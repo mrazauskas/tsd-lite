@@ -1,6 +1,6 @@
 module.exports.default = (foo, bar) => foo + bar;
 
-module.exports.ftwo = (foo, bar, baz) => {
+module.exports.fTwo = (foo, bar, baz) => {
   if (foo != null && bar != null && baz != null) {
     return foo + bar + baz;
   } else {
@@ -8,4 +8,4 @@ module.exports.ftwo = (foo, bar, baz) => {
   }
 };
 
-exports.fthree = (foo) => "a";
+exports.fThree = (foo) => "a";

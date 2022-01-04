@@ -11,7 +11,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "lint": "yarn lint:eslint && yarn lint:prettier",
+    "lint": "yarn lint:cspell && yarn lint:eslint && yarn lint:prettier",
+    "lint:cspell": "cspell --gitignore --no-progress --relative --show-context --show-suggestions",
     "lint:eslint": "eslint . --ext .ts",
     "lint:prettier": "prettier . --write",
     "test": "jest"
@@ -38,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
     "babel-jest": "^27.4.5",
+    "cspell": "^5.14.0",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
     "jest": "^27.4.5",

@@ -11,8 +11,8 @@ import {
   triggerSuggestion,
 } from ".";
 import { Foo } from "./classes";
-import gone, { two as gtwo } from "./generics";
-import fone, { ftwo, fthree } from "./functions";
+import gOne, { two as gTwo } from "./generics";
+import fOne, { fTwo, fThree } from "./functions";
 
 expectError<string>(1);
 expectError<string>("fo");
@@ -50,7 +50,7 @@ expectError(MyClass());
 expectError(new hasProperty({ name: "foo" }));
 
 expectError(() => {
-  triggerSuggestion.fooOrBar = "fooo";
+  triggerSuggestion.fooOrBar = "fOoo";
 });
 
 // classes
@@ -77,18 +77,18 @@ expectError(
 
 // generics
 
-expectError(gone(true, true));
+expectError(gOne(true, true));
 
-expectError(gone<number>(1, 2));
+expectError(gOne<number>(1, 2));
 
-expectError(gtwo<number, string>(1, "bar"));
+expectError(gTwo<number, string>(1, "bar"));
 
 // functions
 
-expectError(fone(true, true));
-expectError(fone("foo", "bar"));
+expectError(fOne(true, true));
+expectError(fOne("foo", "bar"));
 
-expectError(ftwo("foo", "bar"));
+expectError(fTwo("foo", "bar"));
 
 // Produces multiple type checker errors in a single `expectError` assertion
-expectError(fthree(["a", "bad"]));
+expectError(fThree(["a", "bad"]));

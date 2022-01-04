@@ -1,0 +1,5 @@
+{
+  "language": "en-US",
+  "files": ["source/**/*", "tests/**/*", "*.md"],
+  "words": ["Verschueren"]
+}
