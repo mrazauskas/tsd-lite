@@ -78,7 +78,6 @@ const ignoreDiagnostic = (
   expectedErrors: Map<Location, ExpectedError>
 ) => {
   if (ignoredDiagnostics.has(diagnostic.code)) {
-    // Filter out diagnostics which are present in the `ignoredDiagnostics` set
     return "ignore";
   }
 
@@ -103,12 +102,6 @@ const ignoreDiagnostic = (
   return "preserve";
 };
 
-/**
- * Check TypeScript type definitions.
- *
- * @param testPath - Fully resolved path to a test file.
- * @returns A promise which resolves the diagnostics of the type definition.
- */
 export function tsdLite(testPath: string): {
   assertionCount: number;
   diagnostics: Diagnostic[];

@@ -1,8 +1,8 @@
 import type * as ts from "@tsd/typescript";
 import type { Diagnostic, Handler } from "../types";
-import { isNotAssignable } from "./assignable";
+import { expectNotAssignable } from "./assignable";
 import { expectDeprecated, expectNotDeprecated } from "./deprecated";
-import { isIdentical, isNotIdentical } from "./identical";
+import { expectType, expectNotType } from "./identical";
 
 export enum Assertion {
   EXPECT_TYPE = "expectType",
@@ -14,22 +14,14 @@ export enum Assertion {
   EXPECT_NOT_DEPRECATED = "expectNotDeprecated",
 }
 
-// List of diagnostic handlers attached to the assertion
 const assertionHandlers = new Map<Assertion, Handler>([
-  [Assertion.EXPECT_TYPE, isIdentical],
-  [Assertion.EXPECT_NOT_TYPE, isNotIdentical],
-  [Assertion.EXPECT_NOT_ASSIGNABLE, isNotAssignable],
+  [Assertion.EXPECT_TYPE, expectType],
+  [Assertion.EXPECT_NOT_TYPE, expectNotType],
+  [Assertion.EXPECT_NOT_ASSIGNABLE, expectNotAssignable],
   [Assertion.EXPECT_DEPRECATED, expectDeprecated],
   [Assertion.EXPECT_NOT_DEPRECATED, expectNotDeprecated],
 ]);
 
-/**
- * Returns a list of diagnostics based on the assertions provided.
- *
- * @param typeChecker - The TypeScript type checker.
- * @param assertions - Assertion map with the key being the assertion, and the value the list of all those assertion nodes.
- * @returns List of diagnostics.
- */
 export function handleAssertions(
   typeChecker: ts.TypeChecker,
   assertions: Map<Assertion, Set<ts.CallExpression>>
@@ -40,7 +32,6 @@ export function handleAssertions(
     const handler = assertionHandlers.get(assertion);
 
     if (!handler) {
-      // Ignore these assertions as no handler is found
       continue;
     }
 

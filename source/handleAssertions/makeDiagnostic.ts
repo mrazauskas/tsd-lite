@@ -1,12 +1,6 @@
 import type * as ts from "@tsd/typescript";
 import type { Diagnostic } from "../types";
 
-/**
- * Create a diagnostic from the given `node` and `message`.
- *
- * @param node - The TypeScript Node where this diagnostic occurs.
- * @param message - Message of the diagnostic.
- */
 export function makeDiagnostic(node: ts.Node, message: string): Diagnostic {
   const position = node
     .getSourceFile()

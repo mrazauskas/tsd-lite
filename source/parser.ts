@@ -4,25 +4,16 @@ import type { ExpectedError, Location } from "./types";
 
 const assertionFnNames = new Set<string>(Object.values(Assertion));
 
-/**
- * Extract all assertions.
- *
- * @param program - TypeScript program.
- */
 export function extractAssertions(program: ts.Program): {
   assertions: Map<Assertion, Set<ts.CallExpression>>;
   assertionCount: number;
 } {
   const assertions = new Map<Assertion, Set<ts.CallExpression>>();
 
-  /**
-   * Recursively loop over all the nodes and extract all the assertions out of the source files.
-   */
-  function walkNodes(node: ts.Node) {
+  function visit(node: ts.Node) {
     if (ts.isCallExpression(node)) {
-      const identifier = (node.expression as ts.Identifier).getText();
+      const identifier = node.expression.getText();
 
-      // Check if the call type is a valid assertion
       if (assertionFnNames.has(identifier)) {
         const assertion = identifier as Assertion;
 
@@ -34,11 +25,11 @@ export function extractAssertions(program: ts.Program): {
       }
     }
 
-    ts.forEachChild(node, walkNodes);
+    ts.forEachChild(node, visit);
   }
 
   for (const sourceFile of program.getSourceFiles()) {
-    walkNodes(sourceFile);
+    visit(sourceFile);
   }
 
   let assertionCount = 0;
@@ -49,11 +40,6 @@ export function extractAssertions(program: ts.Program): {
   return { assertions, assertionCount };
 }
 
-/**
- * Loop over all the error assertion nodes and convert them to a location map.
- *
- * @param assertions - Assertion map.
- */
 export function parseErrorAssertionToLocation(
   assertions: Map<Assertion, Set<ts.CallExpression>>
 ): Map<Location, ExpectedError> {
@@ -62,11 +48,9 @@ export function parseErrorAssertionToLocation(
   const expectedErrors = new Map<Location, ExpectedError>();
 
   if (!nodes) {
-    // Bail out if we don't have any error nodes
     return expectedErrors;
   }
 
-  // Iterate over the nodes and add the node range to the map
   for (const node of nodes) {
     const { fileName, text: fileText } = node.getSourceFile();
 
