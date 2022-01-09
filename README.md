@@ -36,20 +36,20 @@ This library is intended for programmatic use only.
 ```ts
 import tsdLite from "tsd-lite";
 
-const { assertionCount, diagnostics } = tsdLite(
+const { assertionCount, tsdResults } = tsdLite(
   "/absolute/path/to/testFile.test.ts"
 );
 ```
 
 ## API Reference
 
-### `tsdLite(testPath: string)`
+### `tsdLite(testFilePath: string)`
 
 The exported function takes fully resolved path to a test file as an argument and returns an object:
 
 ```ts
 assertionCount: number;
-diagnostics: {
+tsdResults: {
   file: ts.SourceFile;
   messageText: string | ts.DiagnosticMessageChain;
   start: number;
