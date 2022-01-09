@@ -7,34 +7,29 @@ test("expectType", () => {
 
   expect(diagnostics).toMatchObject([
     {
-      message:
+      messageText:
         "Parameter type 'any' is not identical to argument type 'number'.",
-      line: 9,
-      column: 1,
+      start: 196,
     },
     {
-      message:
+      messageText:
         "Parameter type 'string | number' is declared too wide for argument type 'string'.",
-      line: 10,
-      column: 1,
+      start: 227,
     },
     {
-      message:
+      messageText:
         "Parameter type 'false' is not identical to argument type 'any'.",
-      line: 12,
-      column: 1,
+      start: 287,
     },
     {
-      message:
+      messageText:
         "Parameter type 'string' is declared too wide for argument type 'never'.",
-      line: 14,
-      column: 1,
+      start: 328,
     },
     {
-      message:
+      messageText:
         "Parameter type 'any' is declared too wide for argument type 'never'.",
-      line: 15,
-      column: 1,
+      start: 361,
     },
   ]);
 });
@@ -44,15 +39,13 @@ test("expectNotType", () => {
 
   expect(diagnostics).toMatchObject([
     {
-      message:
+      messageText:
         "Parameter type 'string' is identical to argument type 'string'.",
-      line: 9,
-      column: 1,
+      start: 222,
     },
     {
-      message: "Parameter type 'any' is identical to argument type 'any'.",
-      line: 12,
-      column: 1,
+      messageText: "Parameter type 'any' is identical to argument type 'any'.",
+      start: 327,
     },
   ]);
 });

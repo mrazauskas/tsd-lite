@@ -7,10 +7,9 @@ test("expectAssignable", () => {
 
   expect(diagnostics).toMatchObject([
     {
-      message:
+      messageText:
         "Argument of type 'string' is not assignable to parameter of type 'boolean'.",
-      line: 10,
-      column: 27,
+      start: 295,
     },
   ]);
 });
@@ -20,16 +19,14 @@ test("expectNotAssignable", () => {
 
   expect(diagnostics).toMatchObject([
     {
-      message:
+      messageText:
         "Argument of type 'string' is assignable to parameter of type 'string | number'.",
-      line: 6,
-      column: 1,
+      start: 128,
     },
     {
-      message:
+      messageText:
         "Argument of type 'string' is assignable to parameter of type 'any'.",
-      line: 7,
-      column: 1,
+      start: 188,
     },
   ]);
 });

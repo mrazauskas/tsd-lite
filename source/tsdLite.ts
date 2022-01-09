@@ -64,19 +64,14 @@ const expectErrorDiagnosticCodesToIgnore = new Set<DiagnosticCode>([
   DiagnosticCode.StringLiteralTypeIsNotAssignableToUnionTypeWithSuggestion,
 ]);
 
-/**
- * Check if the provided diagnostic should be ignored.
- *
- * @param diagnostic - The diagnostic to validate.
- * @param expectedErrors - Map of the expected errors.
- * @returns Whether the diagnostic should be `'preserve'`d, `'ignore'`d or, in case that
- * the diagnostic is reported from inside of an `expectError` assertion, the `Location`
- * of the assertion.
- */
-const ignoreDiagnostic = (
-  diagnostic: ts.Diagnostic,
+const isDiagnosticWithLocation = (
+  diagnostic: ts.Diagnostic
+): diagnostic is ts.DiagnosticWithLocation => diagnostic.file !== undefined;
+
+function isIgnoredDiagnostic(
+  diagnostic: ts.DiagnosticWithLocation,
   expectedErrors: Map<Location, ExpectedError>
-) => {
+) {
   if (ignoredDiagnostics.has(diagnostic.code)) {
     return "ignore";
   }
@@ -85,22 +80,21 @@ const ignoreDiagnostic = (
     return "preserve";
   }
 
-  const diagnosticFileName = diagnostic.file!.fileName; // eslint-disable-line @typescript-eslint/no-non-null-assertion
+  const diagnosticFileName = diagnostic.file.fileName;
+  const diagnosticStart = diagnostic.start;
 
   for (const [location] of expectedErrors) {
-    const start = diagnostic.start!; // eslint-disable-line @typescript-eslint/no-non-null-assertion
-
     if (
       diagnosticFileName === location.fileName &&
-      start > location.start &&
-      start < location.end
+      diagnosticStart > location.start &&
+      diagnosticStart < location.end
     ) {
       return location;
     }
   }
 
   return "preserve";
-};
+}
 
 export function tsdLite(testPath: string): {
   assertionCount: number;
@@ -123,17 +117,18 @@ export function tsdLite(testPath: string): {
   const expectedErrorsLocationsWithFoundDiagnostics: Location[] = [];
 
   for (const diagnostic of tsDiagnostics) {
-    /* Filter out all diagnostic messages without a file or from node_modules directories, files under
-     * node_modules are most definitely not under test.
-     */
-    if (
-      !diagnostic.file ||
-      /[/\\]node_modules[/\\]/.test(diagnostic.file.fileName)
-    ) {
+    if (!isDiagnosticWithLocation(diagnostic)) {
       continue;
     }
 
-    const ignoreDiagnosticResult = ignoreDiagnostic(diagnostic, expectedErrors);
+    if (/[/\\]node_modules[/\\]/.test(diagnostic.file.fileName)) {
+      continue;
+    }
+
+    const ignoreDiagnosticResult = isIgnoredDiagnostic(
+      diagnostic,
+      expectedErrors
+    );
 
     if (ignoreDiagnosticResult !== "preserve") {
       if (ignoreDiagnosticResult !== "ignore") {
@@ -145,28 +140,17 @@ export function tsdLite(testPath: string): {
       continue;
     }
 
-    const position = diagnostic.file.getLineAndCharacterOfPosition(
-      diagnostic.start! // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-    const { fileName, text: fileText } = diagnostic.file;
-
-    diagnostics.push({
-      fileName,
-      fileText,
-      message: ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n"),
-      line: position.line + 1,
-      column: position.character + 1,
-    });
+    diagnostics.push(diagnostic);
   }
 
   for (const errorLocationToRemove of expectedErrorsLocationsWithFoundDiagnostics) {
     expectedErrors.delete(errorLocationToRemove);
   }
 
-  for (const [, diagnostic] of expectedErrors) {
+  for (const [, error] of expectedErrors) {
     diagnostics.push({
-      ...diagnostic,
-      message: "Expected an error, but found none.",
+      ...error,
+      messageText: "Expected an error, but found none.",
     });
   }
 

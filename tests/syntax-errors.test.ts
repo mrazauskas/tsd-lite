@@ -7,24 +7,20 @@ test("syntax errors", () => {
 
   expect(diagnostics).toMatchObject([
     {
-      message: "')' expected.",
-      line: 4,
-      column: 30,
+      messageText: "')' expected.",
+      start: 87,
     },
     {
-      message: "',' expected.",
-      line: 5,
-      column: 23,
+      messageText: "',' expected.",
+      start: 111,
     },
     {
-      line: 4,
-      column: 1,
-      message: "Expected an error, but found none.",
+      messageText: "Expected an error, but found none.",
+      start: 58,
     },
     {
-      line: 5,
-      column: 1,
-      message: "Expected an error, but found none.",
+      messageText: "Expected an error, but found none.",
+      start: 89,
     },
   ]);
 });

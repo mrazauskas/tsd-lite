@@ -52,25 +52,13 @@ export function parseErrorAssertionToLocation(
   }
 
   for (const node of nodes) {
-    const { fileName, text: fileText } = node.getSourceFile();
+    const file = node.getSourceFile();
+    const start = node.getStart();
+    const end = node.getEnd();
 
-    const location = {
-      fileName,
-      fileText,
-      start: node.getStart(),
-      end: node.getEnd(),
-    };
+    const location = { fileName: file.fileName, start, end };
 
-    const pos = node
-      .getSourceFile()
-      .getLineAndCharacterOfPosition(node.getStart());
-
-    expectedErrors.set(location, {
-      fileName: location.fileName,
-      fileText: location.fileText,
-      line: pos.line + 1,
-      column: pos.character + 1,
-    });
+    expectedErrors.set(location, { file, start });
   }
 
   return expectedErrors;

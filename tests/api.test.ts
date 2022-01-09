@@ -3,21 +3,16 @@ import { expect, test } from "@jest/globals";
 import tsd from "../";
 import { fixturePath } from "./utils";
 
-test("returns `fileName`", () => {
+test("returns `ts.SourceFile` object", () => {
   const { diagnostics } = tsd(fixturePath("failing"));
 
   expect(diagnostics).toHaveLength(2);
-  expect(normalize(diagnostics[0].fileName)).toEqual(
+  expect(normalize(diagnostics[0].file.fileName)).toEqual(
     resolve("tests", "failing", "index.test.ts")
   );
-});
 
-test("returns `fileText`", () => {
-  const { diagnostics } = tsd(fixturePath("failing"));
-
-  expect(diagnostics).toHaveLength(2);
-  expect(diagnostics[0].fileText).toEqual(diagnostics[1].fileText);
-  expect(diagnostics[0].fileText).toMatchInlineSnapshot(`
+  expect(diagnostics[0].file.text).toEqual(diagnostics[1].file.text);
+  expect(diagnostics[0].file.text).toMatchInlineSnapshot(`
     "import { expectError, expectType } from \\"../../\\";
     import { makeDate } from \\".\\";
 
@@ -47,15 +42,13 @@ test("failing", () => {
 
   expect(diagnostics).toMatchObject([
     {
-      message:
+      messageText:
         "Argument of type 'Date' is not assignable to parameter of type 'string'.",
-      line: 5,
-      column: 20,
+      start: 138,
     },
     {
-      message: "Expected an error, but found none.",
-      line: 7,
-      column: 1,
+      messageText: "Expected an error, but found none.",
+      start: 159,
     },
   ]);
 });
@@ -65,18 +58,16 @@ test("failing-nested", () => {
 
   expect(diagnostics).toMatchObject([
     {
-      fileName: expect.stringContaining("index.test.ts"),
-      message:
+      file: { fileName: expect.stringContaining("index.test.ts") },
+      messageText:
         "Argument of type 'number' is not assignable to parameter of type 'string'.",
-      line: 6,
-      column: 20,
+      start: 136,
     },
     {
-      fileName: expect.stringContaining("nested.ts"),
-      message:
+      file: { fileName: expect.stringContaining("nested.ts") },
+      messageText:
         "Argument of type 'number' is not assignable to parameter of type 'string'.",
-      line: 5,
-      column: 20,
+      start: 117,
     },
   ]);
 });

@@ -7,14 +7,12 @@ test("expectError", () => {
 
   expect(diagnostics).toMatchObject([
     {
-      line: 18,
-      column: 1,
-      message: "Expected an error, but found none.",
+      messageText: "Expected an error, but found none.",
+      start: 332,
     },
     {
-      line: 89,
-      column: 1,
-      message: "Expected an error, but found none.",
+      messageText: "Expected an error, but found none.",
+      start: 1518,
     },
   ]);
 });
