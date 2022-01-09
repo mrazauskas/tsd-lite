@@ -1,23 +1,18 @@
 import { normalize, resolve } from "path";
 import { expect, test } from "@jest/globals";
 import tsd from "../";
-import { fixturePath } from "./utils";
+import { fixturePath, normalizeDiagnostics } from "./utils";
 
-test("returns `fileName`", () => {
+test("returns `ts.SourceFile` object", () => {
   const { diagnostics } = tsd(fixturePath("failing"));
 
   expect(diagnostics).toHaveLength(2);
-  expect(normalize(diagnostics[0].fileName)).toEqual(
+  expect(normalize(diagnostics[0].file.fileName)).toEqual(
     resolve("tests", "failing", "index.test.ts")
   );
-});
 
-test("returns `fileText`", () => {
-  const { diagnostics } = tsd(fixturePath("failing"));
-
-  expect(diagnostics).toHaveLength(2);
-  expect(diagnostics[0].fileText).toEqual(diagnostics[1].fileText);
-  expect(diagnostics[0].fileText).toMatchInlineSnapshot(`
+  expect(diagnostics[0].file.text).toEqual(diagnostics[1].file.text);
+  expect(diagnostics[0].file.text).toMatchInlineSnapshot(`
     "import { expectError, expectType } from \\"../../\\";
     import { makeDate } from \\".\\";
 
@@ -45,17 +40,17 @@ test("passing", () => {
 test("failing", () => {
   const { diagnostics } = tsd(fixturePath("failing"));
 
-  expect(diagnostics).toMatchObject([
+  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
     {
       message:
         "Argument of type 'Date' is not assignable to parameter of type 'string'.",
       line: 5,
-      column: 20,
+      character: 20,
     },
     {
       message: "Expected an error, but found none.",
       line: 7,
-      column: 1,
+      character: 1,
     },
   ]);
 });
@@ -63,20 +58,24 @@ test("failing", () => {
 test("failing-nested", () => {
   const { diagnostics } = tsd(fixturePath("failing-nested"));
 
-  expect(diagnostics).toMatchObject([
+  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
     {
-      fileName: expect.stringContaining("index.test.ts"),
+      file: {
+        fileName: expect.stringContaining("index.test.ts"),
+      },
       message:
         "Argument of type 'number' is not assignable to parameter of type 'string'.",
       line: 6,
-      column: 20,
+      character: 20,
     },
     {
-      fileName: expect.stringContaining("nested.ts"),
+      file: {
+        fileName: expect.stringContaining("nested.ts"),
+      },
       message:
         "Argument of type 'number' is not assignable to parameter of type 'string'.",
       line: 5,
-      column: 20,
+      character: 20,
     },
   ]);
 });

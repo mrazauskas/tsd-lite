@@ -1,12 +1,12 @@
 import type * as ts from "@tsd/typescript";
 
 export type Diagnostic = {
-  fileName: string;
-  fileText: string;
-  message: string;
-  line?: number;
-  column?: number;
+  file: ts.SourceFile;
+  messageText: string | ts.DiagnosticMessageChain;
+  start: number;
 };
+
+export type ExpectedError = Omit<Diagnostic, "messageText">;
 
 export type Location = {
   fileName: string;
@@ -18,8 +18,3 @@ export type Handler = (
   typeChecker: ts.TypeChecker,
   nodes: Set<ts.CallExpression>
 ) => Diagnostic[];
-
-export type ExpectedError = Pick<
-  Diagnostic,
-  "fileName" | "fileText" | "line" | "column"
->;

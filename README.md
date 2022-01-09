@@ -50,11 +50,9 @@ The exported function takes fully resolved path to a test file as an argument an
 ```ts
 assertionCount: number;
 diagnostics: {
-  fileName: string;
-  fileText: string;
-  message: string;
-  line?: number;
-  column?: number;
+  file: ts.SourceFile;
+  messageText: string | ts.DiagnosticMessageChain;
+  start: number;
 }
 ```
 
