@@ -2,7 +2,7 @@ import * as ts from "@tsd/typescript";
 import { handleAssertions } from "./handleAssertions";
 import { extractAssertions, parseErrorAssertionToLocation } from "./parser";
 import { resolveConfig } from "./resolveConfig";
-import type { Diagnostic, ExpectedError, Location } from "./types";
+import type { ExpectedError, Location, TsdResult } from "./types";
 
 enum DiagnosticCode {
   AwaitExpressionOnlyAllowedWithinAsyncFunction = 1308,
@@ -98,25 +98,23 @@ function isIgnoredDiagnostic(
 
 export function tsdLite(testPath: string): {
   assertionCount: number;
-  diagnostics: Diagnostic[];
+  tsdResults: TsdResult[];
 } {
-  const diagnostics: Diagnostic[] = [];
-
   const { compilerOptions } = resolveConfig(testPath);
   const program = ts.createProgram([testPath], compilerOptions);
 
-  const tsDiagnostics = program
+  const diagnostics = program
     .getSemanticDiagnostics()
     .concat(program.getSyntacticDiagnostics());
 
+  const typeChecker = program.getTypeChecker();
   const { assertions, assertionCount } = extractAssertions(program);
-
-  diagnostics.push(...handleAssertions(program.getTypeChecker(), assertions));
+  const tsdResults = handleAssertions(typeChecker, assertions);
 
   const expectedErrors = parseErrorAssertionToLocation(assertions);
   const expectedErrorsLocationsWithFoundDiagnostics: Location[] = [];
 
-  for (const diagnostic of tsDiagnostics) {
+  for (const diagnostic of diagnostics) {
     if (!isDiagnosticWithLocation(diagnostic)) {
       continue;
     }
@@ -140,7 +138,7 @@ export function tsdLite(testPath: string): {
       continue;
     }
 
-    diagnostics.push(diagnostic);
+    tsdResults.push(diagnostic);
   }
 
   for (const errorLocationToRemove of expectedErrorsLocationsWithFoundDiagnostics) {
@@ -148,11 +146,11 @@ export function tsdLite(testPath: string): {
   }
 
   for (const [, error] of expectedErrors) {
-    diagnostics.push({
+    tsdResults.push({
       ...error,
       messageText: "Expected an error, but found none.",
     });
   }
 
-  return { assertionCount, diagnostics };
+  return { assertionCount, tsdResults };
 }

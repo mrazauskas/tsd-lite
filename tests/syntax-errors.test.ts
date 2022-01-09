@@ -1,11 +1,11 @@
 import { expect, test } from "@jest/globals";
 import tsd from "../";
-import { fixturePath, normalizeDiagnostics } from "./utils";
+import { fixturePath, normalizeResults } from "./utils";
 
 test("syntax errors", () => {
-  const { diagnostics } = tsd(fixturePath("syntax-errors"));
+  const { tsdResults } = tsd(fixturePath("syntax-errors"));
 
-  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
+  expect(normalizeResults(tsdResults)).toMatchObject([
     {
       message: "')' expected.",
       line: 4,

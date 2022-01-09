@@ -1,5 +1,5 @@
 import type * as ts from "@tsd/typescript";
-import type { Diagnostic, Handler } from "../types";
+import type { Handler, TsdResult } from "../types";
 import { expectNotAssignable } from "./assignable";
 import { expectDeprecated, expectNotDeprecated } from "./deprecated";
 import { expectType, expectNotType } from "./identical";
@@ -25,8 +25,8 @@ const assertionHandlers = new Map<Assertion, Handler>([
 export function handleAssertions(
   typeChecker: ts.TypeChecker,
   assertions: Map<Assertion, Set<ts.CallExpression>>
-): Diagnostic[] {
-  const diagnostics: Diagnostic[] = [];
+): TsdResult[] {
+  const tadResults: TsdResult[] = [];
 
   for (const [assertion, nodes] of assertions) {
     const handler = assertionHandlers.get(assertion);
@@ -35,8 +35,8 @@ export function handleAssertions(
       continue;
     }
 
-    diagnostics.push(...handler(typeChecker, nodes));
+    tadResults.push(...handler(typeChecker, nodes));
   }
 
-  return diagnostics;
+  return tadResults;
 }

@@ -1,6 +1,6 @@
 import * as ts from "@tsd/typescript";
-import { makeDiagnostic } from "./makeDiagnostic";
-import type { Diagnostic, Handler } from "../types";
+import { makeTsdResult } from "./makeTsdResult";
+import type { Handler, TsdResult } from "../types";
 
 export function expressionToString(
   checker: ts.TypeChecker,
@@ -49,10 +49,10 @@ type Options = {
 
 function expectDeprecatedHelper(options: Options): Handler {
   return (checker, nodes) => {
-    const diagnostics: Diagnostic[] = [];
+    const tsdResults: TsdResult[] = [];
 
     if (!nodes) {
-      return diagnostics;
+      return tsdResults;
     }
 
     for (const node of nodes) {
@@ -66,10 +66,10 @@ function expectDeprecatedHelper(options: Options): Handler {
 
       const message = expressionToString(checker, argument);
 
-      diagnostics.push(makeDiagnostic(node, options.message(message ?? "?")));
+      tsdResults.push(makeTsdResult(node, options.message(message ?? "?")));
     }
 
-    return diagnostics;
+    return tsdResults;
   };
 }
 
