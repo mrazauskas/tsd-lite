@@ -1,7 +1,7 @@
 import { normalize, resolve } from "path";
 import { expect, test } from "@jest/globals";
 import tsd from "../";
-import { fixturePath } from "./utils";
+import { fixturePath, normalizeDiagnostics } from "./utils";
 
 test("returns `ts.SourceFile` object", () => {
   const { diagnostics } = tsd(fixturePath("failing"));
@@ -40,15 +40,17 @@ test("passing", () => {
 test("failing", () => {
   const { diagnostics } = tsd(fixturePath("failing"));
 
-  expect(diagnostics).toMatchObject([
+  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
     {
-      messageText:
+      message:
         "Argument of type 'Date' is not assignable to parameter of type 'string'.",
-      start: 138,
+      line: 5,
+      character: 20,
     },
     {
-      messageText: "Expected an error, but found none.",
-      start: 159,
+      message: "Expected an error, but found none.",
+      line: 7,
+      character: 1,
     },
   ]);
 });
@@ -56,18 +58,24 @@ test("failing", () => {
 test("failing-nested", () => {
   const { diagnostics } = tsd(fixturePath("failing-nested"));
 
-  expect(diagnostics).toMatchObject([
+  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
     {
-      file: { fileName: expect.stringContaining("index.test.ts") },
-      messageText:
+      file: {
+        fileName: expect.stringContaining("index.test.ts"),
+      },
+      message:
         "Argument of type 'number' is not assignable to parameter of type 'string'.",
-      start: 136,
+      line: 6,
+      character: 20,
     },
     {
-      file: { fileName: expect.stringContaining("nested.ts") },
-      messageText:
+      file: {
+        fileName: expect.stringContaining("nested.ts"),
+      },
+      message:
         "Argument of type 'number' is not assignable to parameter of type 'string'.",
-      start: 117,
+      line: 5,
+      character: 20,
     },
   ]);
 });

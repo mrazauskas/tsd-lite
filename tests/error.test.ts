@@ -1,18 +1,20 @@
 import { expect, test } from "@jest/globals";
 import tsd from "../";
-import { fixturePath } from "./utils";
+import { fixturePath, normalizeDiagnostics } from "./utils";
 
 test("expectError", () => {
   const { diagnostics } = tsd(fixturePath("expectError"));
 
-  expect(diagnostics).toMatchObject([
+  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
     {
-      messageText: "Expected an error, but found none.",
-      start: 332,
+      message: "Expected an error, but found none.",
+      line: 18,
+      character: 1,
     },
     {
-      messageText: "Expected an error, but found none.",
-      start: 1518,
+      message: "Expected an error, but found none.",
+      line: 89,
+      character: 1,
     },
   ]);
 });

@@ -1,35 +1,40 @@
 import { expect, test } from "@jest/globals";
 import tsd from "../";
-import { fixturePath } from "./utils";
+import { fixturePath, normalizeDiagnostics } from "./utils";
 
 test("expectType", () => {
   const { diagnostics } = tsd(fixturePath("expectType"));
 
-  expect(diagnostics).toMatchObject([
+  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
     {
-      messageText:
+      message:
         "Parameter type 'any' is not identical to argument type 'number'.",
-      start: 196,
+      line: 9,
+      character: 1,
     },
     {
-      messageText:
+      message:
         "Parameter type 'string | number' is declared too wide for argument type 'string'.",
-      start: 227,
+      line: 10,
+      character: 1,
     },
     {
-      messageText:
+      message:
         "Parameter type 'false' is not identical to argument type 'any'.",
-      start: 287,
+      line: 12,
+      character: 1,
     },
     {
-      messageText:
+      message:
         "Parameter type 'string' is declared too wide for argument type 'never'.",
-      start: 328,
+      line: 14,
+      character: 1,
     },
     {
-      messageText:
+      message:
         "Parameter type 'any' is declared too wide for argument type 'never'.",
-      start: 361,
+      line: 15,
+      character: 1,
     },
   ]);
 });
@@ -37,15 +42,17 @@ test("expectType", () => {
 test("expectNotType", () => {
   const { diagnostics } = tsd(fixturePath("expectNotType"));
 
-  expect(diagnostics).toMatchObject([
+  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
     {
-      messageText:
+      message:
         "Parameter type 'string' is identical to argument type 'string'.",
-      start: 222,
+      line: 9,
+      character: 1,
     },
     {
-      messageText: "Parameter type 'any' is identical to argument type 'any'.",
-      start: 327,
+      message: "Parameter type 'any' is identical to argument type 'any'.",
+      line: 12,
+      character: 1,
     },
   ]);
 });

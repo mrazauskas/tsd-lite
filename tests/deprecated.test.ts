@@ -1,27 +1,31 @@
 import { expect, test } from "@jest/globals";
 import tsd from "../";
-import { fixturePath } from "./utils";
+import { fixturePath, normalizeDiagnostics } from "./utils";
 
 test("expectDeprecated", () => {
   const { diagnostics } = tsd(fixturePath("expectDeprecated"));
 
-  expect(diagnostics).toMatchObject([
+  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
     {
-      messageText:
+      message:
         "Expected '(foo: number, bar: number): number' to be marked deprecated",
-      start: 141,
+      line: 6,
+      character: 1,
     },
     {
-      messageText: "Expected 'Options.delimiter' to be marked deprecated",
-      start: 292,
+      message: "Expected 'Options.delimiter' to be marked deprecated",
+      line: 15,
+      character: 1,
     },
     {
-      messageText: "Expected 'Unicorn.RAINBOW' to be marked deprecated",
-      start: 373,
+      message: "Expected 'Unicorn.RAINBOW' to be marked deprecated",
+      line: 19,
+      character: 1,
     },
     {
-      messageText: "Expected 'RainbowClass' to be marked deprecated",
-      start: 569,
+      message: "Expected 'RainbowClass' to be marked deprecated",
+      line: 34,
+      character: 1,
     },
   ]);
 });
@@ -29,23 +33,27 @@ test("expectDeprecated", () => {
 test("expectNotDeprecated", () => {
   const { diagnostics } = tsd(fixturePath("expectNotDeprecated"));
 
-  expect(diagnostics).toMatchObject([
+  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
     {
-      messageText:
+      message:
         "Expected '(foo: string, bar: string): string' to not be marked deprecated",
-      start: 104,
+      line: 5,
+      character: 1,
     },
     {
-      messageText: "Expected 'Options.separator' to not be marked deprecated",
-      start: 264,
+      message: "Expected 'Options.separator' to not be marked deprecated",
+      line: 14,
+      character: 1,
     },
     {
-      messageText: "Expected 'Unicorn.UNICORN' to not be marked deprecated",
-      start: 353,
+      message: "Expected 'Unicorn.UNICORN' to not be marked deprecated",
+      line: 18,
+      character: 1,
     },
     {
-      messageText: "Expected 'UnicornClass' to not be marked deprecated",
-      start: 558,
+      message: "Expected 'UnicornClass' to not be marked deprecated",
+      line: 33,
+      character: 1,
     },
   ]);
 });
