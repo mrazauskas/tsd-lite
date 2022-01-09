@@ -49,11 +49,12 @@ The exported function takes fully resolved path to a test file as an argument an
 
 ```ts
 assertionCount: number;
-tsdResults: {
+tsdResults: Array<{
   file: ts.SourceFile;
   messageText: string | ts.DiagnosticMessageChain;
   start: number;
-}
+}>;
+configDiagnostics?: Array<ts.Diagnostic>;
 ```
 
 ## License
