@@ -1,15 +1,15 @@
 import type * as ts from "@tsd/typescript";
-import { makeDiagnostic } from "./makeDiagnostic";
-import type { Diagnostic } from "../types";
+import { makeTsdResult } from "./makeTsdResult";
+import type { TsdResult } from "../types";
 
 export function expectNotAssignable(
   checker: ts.TypeChecker,
   nodes: Set<ts.CallExpression>
-): Diagnostic[] {
-  const diagnostics: Diagnostic[] = [];
+): TsdResult[] {
+  const tsdResults: TsdResult[] = [];
 
   if (!nodes) {
-    return diagnostics;
+    return tsdResults;
   }
 
   for (const node of nodes) {
@@ -21,8 +21,8 @@ export function expectNotAssignable(
     const argumentType = checker.getTypeAtLocation(node.arguments[0]);
 
     if (checker.isTypeAssignableTo(argumentType, expectedType)) {
-      diagnostics.push(
-        makeDiagnostic(
+      tsdResults.push(
+        makeTsdResult(
           node,
           `Argument of type '${checker.typeToString(
             argumentType
@@ -34,5 +34,5 @@ export function expectNotAssignable(
     }
   }
 
-  return diagnostics;
+  return tsdResults;
 }

@@ -1,12 +1,12 @@
 import type * as ts from "@tsd/typescript";
 
-export type Diagnostic = {
+export type TsdResult = {
   file: ts.SourceFile;
   messageText: string | ts.DiagnosticMessageChain;
   start: number;
 };
 
-export type ExpectedError = Omit<Diagnostic, "messageText">;
+export type ExpectedError = Omit<TsdResult, "messageText">;
 
 export type Location = {
   fileName: string;
@@ -17,4 +17,4 @@ export type Location = {
 export type Handler = (
   typeChecker: ts.TypeChecker,
   nodes: Set<ts.CallExpression>
-) => Diagnostic[];
+) => TsdResult[];

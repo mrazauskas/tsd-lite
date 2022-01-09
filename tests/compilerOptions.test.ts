@@ -3,13 +3,13 @@ import tsd from "../";
 import { fixturePath } from "./utils";
 
 test("`compilerOptions.lib` in nearest `tsconfig.json`", () => {
-  const { diagnostics } = tsd(fixturePath("compilerOptions-lib"));
+  const { tsdResults } = tsd(fixturePath("compilerOptions-lib"));
 
-  expect(diagnostics).toHaveLength(0);
+  expect(tsdResults).toHaveLength(0);
 });
 
 test("`compilerOptions.strict` in nearest `tsconfig.json`", () => {
-  const { diagnostics } = tsd(fixturePath("compilerOptions-strict"));
+  const { tsdResults } = tsd(fixturePath("compilerOptions-strict"));
 
-  expect(diagnostics).toHaveLength(0);
+  expect(tsdResults).toHaveLength(0);
 });

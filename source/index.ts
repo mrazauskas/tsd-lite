@@ -9,3 +9,5 @@ export {
   expectNotType,
   expectType,
 } from "./assertions";
+
+export type { TsdResult } from "./types";

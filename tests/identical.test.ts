@@ -1,11 +1,11 @@
 import { expect, test } from "@jest/globals";
 import tsd from "../";
-import { fixturePath, normalizeDiagnostics } from "./utils";
+import { fixturePath, normalizeResults } from "./utils";
 
 test("expectType", () => {
-  const { diagnostics } = tsd(fixturePath("expectType"));
+  const { tsdResults } = tsd(fixturePath("expectType"));
 
-  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
+  expect(normalizeResults(tsdResults)).toMatchObject([
     {
       message:
         "Parameter type 'any' is not identical to argument type 'number'.",
@@ -40,9 +40,9 @@ test("expectType", () => {
 });
 
 test("expectNotType", () => {
-  const { diagnostics } = tsd(fixturePath("expectNotType"));
+  const { tsdResults } = tsd(fixturePath("expectNotType"));
 
-  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
+  expect(normalizeResults(tsdResults)).toMatchObject([
     {
       message:
         "Parameter type 'string' is identical to argument type 'string'.",

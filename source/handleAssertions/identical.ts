@@ -1,15 +1,15 @@
 import type * as ts from "@tsd/typescript";
-import { makeDiagnostic } from "./makeDiagnostic";
-import type { Diagnostic } from "../types";
+import { makeTsdResult } from "./makeTsdResult";
+import type { TsdResult } from "../types";
 
 export function expectType(
   checker: ts.TypeChecker,
   nodes: Set<ts.CallExpression>
-): Diagnostic[] {
-  const diagnostics: Diagnostic[] = [];
+): TsdResult[] {
+  const tsdResults: TsdResult[] = [];
 
   if (!nodes) {
-    return diagnostics;
+    return tsdResults;
   }
 
   for (const node of nodes) {
@@ -26,8 +26,8 @@ export function expectType(
     }
 
     if (!checker.isTypeAssignableTo(expectedType, argumentType)) {
-      diagnostics.push(
-        makeDiagnostic(
+      tsdResults.push(
+        makeTsdResult(
           node,
           `Parameter type '${checker.typeToString(
             expectedType
@@ -41,8 +41,8 @@ export function expectType(
        * The expected type and argument type are assignable in both directions. We still have to check
        * if the types are identical. See https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#3.11.2.
        */
-      diagnostics.push(
-        makeDiagnostic(
+      tsdResults.push(
+        makeTsdResult(
           node,
           `Parameter type '${checker.typeToString(
             expectedType
@@ -54,17 +54,17 @@ export function expectType(
     }
   }
 
-  return diagnostics;
+  return tsdResults;
 }
 
 export function expectNotType(
   checker: ts.TypeChecker,
   nodes: Set<ts.CallExpression>
-): Diagnostic[] {
-  const diagnostics: Diagnostic[] = [];
+): TsdResult[] {
+  const tsdResults: TsdResult[] = [];
 
   if (!nodes) {
-    return diagnostics;
+    return tsdResults;
   }
 
   for (const node of nodes) {
@@ -76,8 +76,8 @@ export function expectNotType(
     const argumentType = checker.getTypeAtLocation(node.arguments[0]);
 
     if (checker.isTypeIdenticalTo(expectedType, argumentType)) {
-      diagnostics.push(
-        makeDiagnostic(
+      tsdResults.push(
+        makeTsdResult(
           node,
           `Parameter type '${checker.typeToString(
             expectedType
@@ -89,5 +89,5 @@ export function expectNotType(
     }
   }
 
-  return diagnostics;
+  return tsdResults;
 }

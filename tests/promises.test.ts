@@ -3,7 +3,7 @@ import tsd from "../";
 import { fixturePath } from "./utils";
 
 test("promises", () => {
-  const { diagnostics } = tsd(fixturePath("promises"));
+  const { tsdResults } = tsd(fixturePath("promises"));
 
-  expect(diagnostics).toHaveLength(0);
+  expect(tsdResults).toHaveLength(0);
 });

@@ -1,11 +1,11 @@
 import { expect, test } from "@jest/globals";
 import tsd from "../";
-import { fixturePath, normalizeDiagnostics } from "./utils";
+import { fixturePath, normalizeResults } from "./utils";
 
 test("expectAssignable", () => {
-  const { diagnostics } = tsd(fixturePath("expectAssignable"));
+  const { tsdResults } = tsd(fixturePath("expectAssignable"));
 
-  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
+  expect(normalizeResults(tsdResults)).toMatchObject([
     {
       message:
         "Argument of type 'string' is not assignable to parameter of type 'boolean'.",
@@ -16,9 +16,9 @@ test("expectAssignable", () => {
 });
 
 test("expectNotAssignable", () => {
-  const { diagnostics } = tsd(fixturePath("expectNotAssignable"));
+  const { tsdResults } = tsd(fixturePath("expectNotAssignable"));
 
-  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
+  expect(normalizeResults(tsdResults)).toMatchObject([
     {
       message:
         "Argument of type 'string' is assignable to parameter of type 'string | number'.",

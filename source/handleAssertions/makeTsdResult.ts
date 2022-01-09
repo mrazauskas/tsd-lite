@@ -1,7 +1,7 @@
 import type * as ts from "@tsd/typescript";
-import type { Diagnostic } from "../types";
+import type { TsdResult } from "../types";
 
-export function makeDiagnostic(node: ts.Node, messageText: string): Diagnostic {
+export function makeTsdResult(node: ts.Node, messageText: string): TsdResult {
   return {
     file: node.getSourceFile(),
     start: node.getStart(),

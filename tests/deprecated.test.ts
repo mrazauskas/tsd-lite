@@ -1,11 +1,11 @@
 import { expect, test } from "@jest/globals";
 import tsd from "../";
-import { fixturePath, normalizeDiagnostics } from "./utils";
+import { fixturePath, normalizeResults } from "./utils";
 
 test("expectDeprecated", () => {
-  const { diagnostics } = tsd(fixturePath("expectDeprecated"));
+  const { tsdResults } = tsd(fixturePath("expectDeprecated"));
 
-  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
+  expect(normalizeResults(tsdResults)).toMatchObject([
     {
       message:
         "Expected '(foo: number, bar: number): number' to be marked deprecated",
@@ -31,9 +31,9 @@ test("expectDeprecated", () => {
 });
 
 test("expectNotDeprecated", () => {
-  const { diagnostics } = tsd(fixturePath("expectNotDeprecated"));
+  const { tsdResults } = tsd(fixturePath("expectNotDeprecated"));
 
-  expect(normalizeDiagnostics(diagnostics)).toMatchObject([
+  expect(normalizeResults(tsdResults)).toMatchObject([
     {
       message:
         "Expected '(foo: string, bar: string): string' to not be marked deprecated",
