@@ -5,8 +5,7 @@
     "moduleResolution": "node",
     "strict": true,
     "noImplicitOverride": true,
-    "skipLibCheck": true,
-    "newLine": "lf"
+    "skipLibCheck": true
   },
   "include": ["**/*"]
 }

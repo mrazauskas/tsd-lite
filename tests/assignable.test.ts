@@ -5,11 +5,23 @@ import { fixturePath } from "./utils";
 test("expectAssignable", () => {
   const { diagnostics } = tsd(fixturePath("expectAssignable"));
 
-  expect(diagnostics).toMatchObject([
+  const normalizedDiagnostics = diagnostics.map((diagnostic) => {
+    const { character, line } = diagnostic.file.getLineAndCharacterOfPosition(
+      diagnostic.start
+    );
+    return {
+      character: character + 1,
+      line: line + 1,
+      message: diagnostic.messageText,
+    };
+  });
+
+  expect(normalizedDiagnostics).toMatchObject([
     {
-      messageText:
+      message:
         "Argument of type 'string' is not assignable to parameter of type 'boolean'.",
-      start: 295,
+      line: 10,
+      character: 27,
     },
   ]);
 });
@@ -17,16 +29,29 @@ test("expectAssignable", () => {
 test("expectNotAssignable", () => {
   const { diagnostics } = tsd(fixturePath("expectNotAssignable"));
 
-  expect(diagnostics).toMatchObject([
+  const normalizedDiagnostics = diagnostics.map((diagnostic) => {
+    const { character, line } = diagnostic.file.getLineAndCharacterOfPosition(
+      diagnostic.start
+    );
+    return {
+      character: character + 1,
+      line: line + 1,
+      message: diagnostic.messageText,
+    };
+  });
+
+  expect(normalizedDiagnostics).toMatchObject([
     {
-      messageText:
+      message:
         "Argument of type 'string' is assignable to parameter of type 'string | number'.",
-      start: 128,
+      line: 6,
+      character: 1,
     },
     {
-      messageText:
+      message:
         "Argument of type 'string' is assignable to parameter of type 'any'.",
-      start: 188,
+      line: 7,
+      character: 1,
     },
   ]);
 });
