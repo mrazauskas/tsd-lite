@@ -1,4 +1,4 @@
-import { join } from "path";
+import { join, normalize } from "path";
 import { expect, test } from "@jest/globals";
 import tsd from "../";
 import { fixturePath, normalizeDiagnostic } from "./utils";
@@ -26,11 +26,13 @@ test("when parsing `tsconfig.json` returns errors", () => {
     fixturePath("compilerOptions-errors")
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  expect(normalize(configDiagnostics![0].file!.fileName)).toEqual(
+    join(__dirname, "compilerOptions-errors", "tsconfig.json")
+  );
+
   expect(normalizeDiagnostic(configDiagnostics)).toMatchObject([
     {
-      file: {
-        fileName: join(__dirname, "compilerOptions-errors", "tsconfig.json"),
-      },
       message:
         "Argument for '--module' option must be: 'none', 'commonjs', 'amd', 'system', 'umd', 'es6', 'es2015', 'es2020', 'es2022', 'esnext', 'node12', 'nodenext'.",
       line: 3,
