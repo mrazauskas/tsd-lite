@@ -1,7 +1,7 @@
 import * as ts from "@tsd/typescript";
 import { handleAssertions } from "./handleAssertions";
 import { extractAssertions, parseErrorAssertionToLocation } from "./parser";
-import { resolveConfig } from "./resolveConfig";
+import { resolveCompilerOptions } from "./resolveCompilerOptions";
 import type { ExpectedError, Location, TsdResult } from "./types";
 
 enum DiagnosticCode {
@@ -96,12 +96,23 @@ function isIgnoredDiagnostic(
   return "preserve";
 }
 
-export function tsdLite(testPath: string): {
+export function tsdLite(testFilePath: string): {
   assertionCount: number;
   tsdResults: TsdResult[];
+  configDiagnostics?: ts.Diagnostic[];
 } {
-  const { compilerOptions } = resolveConfig(testPath);
-  const program = ts.createProgram([testPath], compilerOptions);
+  const { compilerOptions, configDiagnostics } =
+    resolveCompilerOptions(testFilePath);
+
+  if (configDiagnostics.length !== 0) {
+    return {
+      configDiagnostics,
+      assertionCount: 0,
+      tsdResults: [],
+    };
+  }
+
+  const program = ts.createProgram([testFilePath], compilerOptions);
 
   const diagnostics = program
     .getSemanticDiagnostics()
