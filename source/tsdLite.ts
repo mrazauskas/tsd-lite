@@ -4,65 +4,15 @@ import { extractAssertions, parseErrorAssertionToLocation } from "./parser";
 import { resolveCompilerOptions } from "./resolveCompilerOptions";
 import type { ExpectedError, Location, TsdResult } from "./types";
 
-enum DiagnosticCode {
-  AwaitExpressionOnlyAllowedWithinAsyncFunction = 1308,
-  TopLevelAwaitOnlyAllowedWhenModuleESNextOrSystem = 1378,
-  GenericTypeRequiresTypeArguments = 2314,
-  TypeIsNotAssignableToOtherType = 2322,
-  PropertyDoesNotExistOnType = 2339,
-  TypeDoesNotSatisfyTheConstraint = 2344,
-  ArgumentTypeIsNotAssignableToParameterType = 2345,
-  ValueOfTypeNotCallable = 2348,
-  ExpressionNotCallable = 2349,
-  OnlyVoidFunctionIsNewCallable = 2350,
-  ExpressionNotConstructable = 2351,
-  CannotAssignToReadOnlyProperty = 2540,
-  ExpectedArgumentsButGotOther = 2554,
-  ExpectedAtLeastArgumentsButGotOther = 2555,
-  TypeHasNoPropertiesInCommonWith = 2559,
-  NoOverloadExpectsCountOfArguments = 2575,
-  ThisContextOfTypeNotAssignableToMethodOfThisType = 2684,
-  PropertyMissingInType1ButRequiredInType2 = 2741,
-  NoOverloadExpectsCountOfTypeArguments = 2743,
-  NoOverloadMatches = 2769,
-  StringLiteralTypeIsNotAssignableToUnionTypeWithSuggestion = 2820,
-  MemberCannotHaveOverrideModifierBecauseItIsNotDeclaredInBaseClass = 4113,
-  MemberMustHaveOverrideModifier = 4114,
-  NewExpressionTargetLackingConstructSignatureHasAnyType = 7009,
-}
+// For reference see:
+// https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
 
-// List of diagnostic codes that should be ignored in general
-const ignoredDiagnostics = new Set<number>([
-  // Older TS version report 'await expression only allowed within async function
-  DiagnosticCode.AwaitExpressionOnlyAllowedWithinAsyncFunction,
-  DiagnosticCode.TopLevelAwaitOnlyAllowedWhenModuleESNextOrSystem,
-]);
+const silencedErrors = [
+  2314, 2322, 2339, 2344, 2345, 2348, 2349, 2350, 2351, 2540, 2554, 2555, 2559,
+  2575, 2684, 2741, 2743, 2769, 2820, 4113, 4114, 7009,
+];
 
-// List of diagnostic codes which should be ignored inside `expectError` statements
-const expectErrorDiagnosticCodesToIgnore = new Set<DiagnosticCode>([
-  DiagnosticCode.ArgumentTypeIsNotAssignableToParameterType,
-  DiagnosticCode.PropertyDoesNotExistOnType,
-  DiagnosticCode.CannotAssignToReadOnlyProperty,
-  DiagnosticCode.TypeIsNotAssignableToOtherType,
-  DiagnosticCode.TypeDoesNotSatisfyTheConstraint,
-  DiagnosticCode.GenericTypeRequiresTypeArguments,
-  DiagnosticCode.ExpectedArgumentsButGotOther,
-  DiagnosticCode.ExpectedAtLeastArgumentsButGotOther,
-  DiagnosticCode.NoOverloadExpectsCountOfArguments,
-  DiagnosticCode.NoOverloadExpectsCountOfTypeArguments,
-  DiagnosticCode.NoOverloadMatches,
-  DiagnosticCode.PropertyMissingInType1ButRequiredInType2,
-  DiagnosticCode.TypeHasNoPropertiesInCommonWith,
-  DiagnosticCode.ThisContextOfTypeNotAssignableToMethodOfThisType,
-  DiagnosticCode.ValueOfTypeNotCallable,
-  DiagnosticCode.ExpressionNotCallable,
-  DiagnosticCode.OnlyVoidFunctionIsNewCallable,
-  DiagnosticCode.ExpressionNotConstructable,
-  DiagnosticCode.NewExpressionTargetLackingConstructSignatureHasAnyType,
-  DiagnosticCode.MemberCannotHaveOverrideModifierBecauseItIsNotDeclaredInBaseClass,
-  DiagnosticCode.MemberMustHaveOverrideModifier,
-  DiagnosticCode.StringLiteralTypeIsNotAssignableToUnionTypeWithSuggestion,
-]);
+const topLevelAwaitErrors = [1308, 1378];
 
 const isDiagnosticWithLocation = (
   diagnostic: ts.Diagnostic
@@ -72,11 +22,11 @@ function isIgnoredDiagnostic(
   diagnostic: ts.DiagnosticWithLocation,
   expectedErrors: Map<Location, ExpectedError>
 ) {
-  if (ignoredDiagnostics.has(diagnostic.code)) {
+  if (topLevelAwaitErrors.includes(diagnostic.code)) {
     return "ignore";
   }
 
-  if (!expectErrorDiagnosticCodesToIgnore.has(diagnostic.code)) {
+  if (!silencedErrors.includes(diagnostic.code)) {
     return "preserve";
   }
 
