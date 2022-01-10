@@ -5,49 +5,59 @@ import type { TsdResult } from "../";
 export const fixturePath = (fixture: string): string =>
   join(__dirname, fixture, "index.test.ts");
 
-export function normalizeResults(results: TsdResult[]): {
-  file: ts.SourceFile;
+type NormalizedResult = {
   message: string | ts.DiagnosticMessageChain;
+  file: ts.SourceFile;
   line: number;
   character: number;
-}[] {
+};
+
+export function normalizeResults(
+  results: Array<TsdResult>
+): Array<NormalizedResult> {
   return results.map((result) => {
     const { line, character } = result.file.getLineAndCharacterOfPosition(
       result.start
     );
     return {
-      file: result.file,
       message: result.messageText,
+      file: result.file,
       line: line + 1,
       character: character + 1,
     };
   });
 }
 
+type NormalizedError = {
+  message: string | ts.DiagnosticMessageChain;
+  file?: ts.SourceFile;
+  line?: number;
+  character?: number;
+};
+
 const isDiagnosticWithLocation = (
   diagnostic: ts.Diagnostic
 ): diagnostic is ts.DiagnosticWithLocation => diagnostic.file !== undefined;
 
-export function normalizeDiagnostic(diagnostics: ts.Diagnostic[] = []): {
-  file: ts.SourceFile | undefined;
-  message: string | ts.DiagnosticMessageChain;
-  line: number | undefined;
-  character: number | undefined;
-}[] {
+export function normalizeErrors(
+  diagnostics: ReadonlyArray<ts.Diagnostic | ts.DiagnosticWithLocation> = []
+): Array<NormalizedError> {
   return diagnostics.map((diagnostic) => {
-    let location;
-
     if (isDiagnosticWithLocation(diagnostic)) {
-      location = diagnostic.file.getLineAndCharacterOfPosition(
+      const { line, character } = diagnostic.file.getLineAndCharacterOfPosition(
         diagnostic.start
       );
+      return {
+        message: diagnostic.messageText,
+        file: diagnostic.file,
+        line: line + 1,
+        character: character + 1,
+      };
     }
 
     return {
-      file: diagnostic.file,
       message: diagnostic.messageText,
-      line: location?.line ? location.line + 1 : undefined,
-      character: location?.character ? location.character + 1 : undefined,
+      file: diagnostic.file,
     };
   });
 }

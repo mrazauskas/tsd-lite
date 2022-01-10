@@ -1,40 +1,35 @@
 import { join, normalize } from "path";
 import { expect, test } from "@jest/globals";
 import tsd from "../";
-import { fixturePath, normalizeDiagnostic } from "./utils";
+import { fixturePath, normalizeErrors } from "./utils";
 
 test("`compilerOptions.lib` in nearest `tsconfig.json`", () => {
-  const { configDiagnostics, tsdResults } = tsd(
-    fixturePath("compilerOptions-lib")
-  );
+  const { tsdErrors, tsdResults } = tsd(fixturePath("compilerOptions-lib"));
 
-  expect(configDiagnostics).toBeUndefined();
+  expect(tsdErrors).toBeUndefined();
   expect(tsdResults).toHaveLength(0);
 });
 
 test("`compilerOptions.strict` in nearest `tsconfig.json`", () => {
-  const { configDiagnostics, tsdResults } = tsd(
-    fixturePath("compilerOptions-strict")
-  );
+  const { tsdErrors, tsdResults } = tsd(fixturePath("compilerOptions-strict"));
 
-  expect(configDiagnostics).toBeUndefined();
+  expect(tsdErrors).toBeUndefined();
   expect(tsdResults).toHaveLength(0);
 });
 
 test("when parsing `tsconfig.json` returns errors", () => {
-  const { assertionCount, configDiagnostics, tsdResults } = tsd(
+  const { assertionCount, tsdErrors, tsdResults } = tsd(
     fixturePath("compilerOptions-errors")
   );
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  expect(normalize(configDiagnostics![0].file!.fileName)).toEqual(
+  expect(normalize(tsdErrors![0].file!.fileName)).toEqual(
     join(__dirname, "compilerOptions-errors", "tsconfig.json")
   );
 
-  expect(normalizeDiagnostic(configDiagnostics)).toMatchObject([
+  expect(normalizeErrors(tsdErrors)).toMatchObject([
     {
-      message:
-        "Argument for '--module' option must be: 'none', 'commonjs', 'amd', 'system', 'umd', 'es6', 'es2015', 'es2020', 'es2022', 'esnext', 'node12', 'nodenext'.",
+      message: expect.stringContaining("Argument for '--module' option must"),
       line: 3,
       character: 15,
     },
@@ -44,10 +39,8 @@ test("when parsing `tsconfig.json` returns errors", () => {
       character: 15,
     },
     {
-      file: undefined,
       message: expect.stringContaining("No inputs were found in config file"),
-      line: undefined,
-      character: undefined,
+      file: undefined,
     },
   ]);
 

@@ -1,5 +1,5 @@
 {
   "language": "en-US",
   "files": ["source/**/*", "tests/**/*", "*.md"],
-  "words": ["nodenext", "Verschueren"]
+  "words": ["Verschueren"]
 }
