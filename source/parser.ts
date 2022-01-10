@@ -1,6 +1,6 @@
 import * as ts from "@tsd/typescript";
 import { Assertion } from "./handleAssertions";
-import type { ExpectedError, Location } from "./types";
+import type { Location } from "./types";
 
 const assertionFnNames = new Set<string>(Object.values(Assertion));
 
@@ -42,23 +42,23 @@ export function extractAssertions(program: ts.Program): {
 
 export function parseErrorAssertionToLocation(
   assertions: Map<Assertion, Set<ts.CallExpression>>
-): Map<Location, ExpectedError> {
+): Map<Location, ts.Node> {
   const nodes = assertions.get(Assertion.EXPECT_ERROR);
 
-  const expectedErrors = new Map<Location, ExpectedError>();
+  const expectedErrors = new Map<Location, ts.Node>();
 
   if (!nodes) {
     return expectedErrors;
   }
 
   for (const node of nodes) {
-    const file = node.getSourceFile();
-    const start = node.getStart();
-    const end = node.getEnd();
+    const location = {
+      fileName: node.getSourceFile().fileName,
+      start: node.getStart(),
+      end: node.getEnd(),
+    };
 
-    const location = { fileName: file.fileName, start, end };
-
-    expectedErrors.set(location, { file, start });
+    expectedErrors.set(location, node);
   }
 
   return expectedErrors;

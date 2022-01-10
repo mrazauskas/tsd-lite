@@ -6,8 +6,6 @@ export type TsdResult = {
   start: number;
 };
 
-export type ExpectedError = Omit<TsdResult, "messageText">;
-
 export type Location = {
   fileName: string;
   start: number;

@@ -1,8 +1,9 @@
 import * as ts from "@tsd/typescript";
 import { handleAssertions } from "./handleAssertions";
+import { makeTsdResult } from "./handleAssertions/makeTsdResult";
 import { extractAssertions, parseErrorAssertionToLocation } from "./parser";
 import { resolveCompilerOptions } from "./resolveCompilerOptions";
-import type { ExpectedError, Location, TsdResult } from "./types";
+import type { Location, TsdResult } from "./types";
 
 // For reference see:
 // https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
@@ -20,7 +21,7 @@ const isDiagnosticWithLocation = (
 
 function isIgnoredDiagnostic(
   diagnostic: ts.DiagnosticWithLocation,
-  expectedErrors: Map<Location, ExpectedError>
+  expectedErrors: Map<Location, ts.Node>
 ) {
   if (topLevelAwaitErrors.includes(diagnostic.code)) {
     return "ignore";
@@ -114,11 +115,8 @@ export function tsdLite(testFilePath: string): {
     expectedErrors.delete(errorLocationToRemove);
   }
 
-  for (const [, error] of expectedErrors) {
-    tsdResults.push({
-      ...error,
-      messageText: "Expected an error, but found none.",
-    });
+  for (const [, node] of expectedErrors) {
+    tsdResults.push(makeTsdResult(node, "Expected an error, but found none."));
   }
 
   return { assertionCount, tsdResults };
