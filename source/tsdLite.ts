@@ -98,34 +98,42 @@ function isIgnoredDiagnostic(
 
 export function tsdLite(testFilePath: string): {
   assertionCount: number;
-  tsdResults: TsdResult[];
-  configDiagnostics?: ts.Diagnostic[];
+  tsdResults: Array<TsdResult>;
+  tsdErrors?: ReadonlyArray<ts.Diagnostic | ts.DiagnosticWithLocation>;
 } {
   const { compilerOptions, configDiagnostics } =
     resolveCompilerOptions(testFilePath);
 
   if (configDiagnostics.length !== 0) {
     return {
-      configDiagnostics,
+      tsdErrors: configDiagnostics,
       assertionCount: 0,
       tsdResults: [],
     };
   }
 
   const program = ts.createProgram([testFilePath], compilerOptions);
+  const syntacticDiagnostics = program.getSyntacticDiagnostics();
 
-  const diagnostics = program
-    .getSemanticDiagnostics()
-    .concat(program.getSyntacticDiagnostics());
+  if (syntacticDiagnostics.length !== 0) {
+    return {
+      tsdErrors: syntacticDiagnostics,
+      assertionCount: 0,
+      tsdResults: [],
+    };
+  }
+
+  const semanticDiagnostics = program.getSemanticDiagnostics();
 
   const typeChecker = program.getTypeChecker();
   const { assertions, assertionCount } = extractAssertions(program);
+
   const tsdResults = handleAssertions(typeChecker, assertions);
 
   const expectedErrors = parseErrorAssertionToLocation(assertions);
   const expectedErrorsLocationsWithFoundDiagnostics: Location[] = [];
 
-  for (const diagnostic of diagnostics) {
+  for (const diagnostic of semanticDiagnostics) {
     if (!isDiagnosticWithLocation(diagnostic)) {
       continue;
     }
