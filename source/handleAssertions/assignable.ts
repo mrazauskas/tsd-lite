@@ -1,12 +1,12 @@
 import type * as ts from "@tsd/typescript";
-import { makeTsdResult } from "./makeTsdResult";
-import type { TsdResult } from "../types";
+import type { AssertionResult } from "../types";
+import { toAssertionResult } from "./";
 
 export function expectNotAssignable(
   checker: ts.TypeChecker,
   nodes: Set<ts.CallExpression>
-): TsdResult[] {
-  const tsdResults: TsdResult[] = [];
+): AssertionResult[] {
+  const tsdResults: AssertionResult[] = [];
 
   if (!nodes) {
     return tsdResults;
@@ -22,7 +22,7 @@ export function expectNotAssignable(
 
     if (checker.isTypeAssignableTo(argumentType, expectedType)) {
       tsdResults.push(
-        makeTsdResult(
+        toAssertionResult(
           node,
           `Argument of type '${checker.typeToString(
             argumentType

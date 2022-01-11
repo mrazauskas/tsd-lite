@@ -1,12 +1,17 @@
 import * as ts from "@tsd/typescript";
 import { Assertion } from "./handleAssertions";
-import type { Location } from "./types";
+
+export type Location = {
+  fileName: string;
+  start: number;
+  end: number;
+};
 
 const assertionFnNames = new Set<string>(Object.values(Assertion));
 
 export function extractAssertions(program: ts.Program): {
   assertions: Map<Assertion, Set<ts.CallExpression>>;
-  assertionCount: number;
+  assertionsCount: number;
 } {
   const assertions = new Map<Assertion, Set<ts.CallExpression>>();
 
@@ -32,12 +37,12 @@ export function extractAssertions(program: ts.Program): {
     visit(sourceFile);
   }
 
-  let assertionCount = 0;
+  let assertionsCount = 0;
   assertions.forEach((nodes) => {
-    assertionCount += nodes.size;
+    assertionsCount += nodes.size;
   });
 
-  return { assertions, assertionCount };
+  return { assertions, assertionsCount };
 }
 
 export function parseErrorAssertionToLocation(

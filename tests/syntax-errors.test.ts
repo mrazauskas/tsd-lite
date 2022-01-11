@@ -9,12 +9,12 @@ test("syntax errors", () => {
 
   expect(normalizeErrors(tsdErrors)).toMatchObject([
     {
-      message: "')' expected.",
+      message: "SyntaxError: ')' expected.",
       line: 4,
       character: 30,
     },
     {
-      message: "',' expected.",
+      message: "SyntaxError: ',' expected.",
       line: 5,
       character: 23,
     },

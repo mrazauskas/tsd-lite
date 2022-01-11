@@ -37,7 +37,7 @@ This library is intended for programmatic use only.
 ```ts
 import tsdLite from "tsd-lite";
 
-const { assertionCount, tsdErrors, tsdResults } = tsdLite(
+const { assertionsCount, tsdResults, tsdErrors } = tsdLite(
   "/absolute/path/to/testFile.test.ts"
 );
 ```
@@ -49,13 +49,21 @@ const { assertionCount, tsdErrors, tsdResults } = tsdLite(
 The exported function takes fully resolved path to a test file as an argument and returns an object:
 
 ```ts
-assertionCount: number;
-tsdResults: Array<{
-  file: ts.SourceFile;
-  messageText: string | ts.DiagnosticMessageChain;
-  start: number;
-}>;
-tsdErrors?: ReadonlyArray<ts.Diagnostic | ts.DiagnosticWithLocation>;
+{
+  assertionsCount: number;
+  tsdResults: Array<{
+    message: string;
+    messageText: string | ts.DiagnosticMessageChain;
+    file: ts.SourceFile;
+    start: number;
+  }>;
+  tsdErrors?: Array<{
+    message: string;
+    messageText: string | ts.DiagnosticMessageChain;
+    file: ts.SourceFile | undefined;
+    start: number | undefined;
+  }>;
+};
 ```
 
 ## License

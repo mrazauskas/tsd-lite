@@ -1,18 +1,18 @@
 import type * as ts from "@tsd/typescript";
 
-export type TsdResult = {
-  file: ts.SourceFile;
+export type AssertionResult = {
   messageText: string | ts.DiagnosticMessageChain;
+  file: ts.SourceFile;
   start: number;
 };
 
-export type Location = {
-  fileName: string;
-  start: number;
-  end: number;
-};
+export type ErrorResult = ts.Diagnostic | ts.DiagnosticWithLocation;
 
-export type Handler = (
-  typeChecker: ts.TypeChecker,
-  nodes: Set<ts.CallExpression>
-) => TsdResult[];
+export type RawResult = AssertionResult | ErrorResult;
+
+export type TsdResult<T extends RawResult> = {
+  message: string;
+  messageText: T["messageText"];
+  start: T["start"];
+  file: T["file"];
+};

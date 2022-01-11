@@ -1,85 +1,74 @@
 import * as ts from "@tsd/typescript";
-import { handleAssertions } from "./handleAssertions";
-import { makeTsdResult } from "./handleAssertions/makeTsdResult";
-import { extractAssertions, parseErrorAssertionToLocation } from "./parser";
+import { handleAssertions, toAssertionResult } from "./handleAssertions";
+import {
+  Location,
+  extractAssertions,
+  parseErrorAssertionToLocation,
+} from "./parser";
 import { resolveCompilerOptions } from "./resolveCompilerOptions";
-import type { Location, TsdResult } from "./types";
+import { silenceError } from "./silenceError";
+import type {
+  AssertionResult,
+  ErrorResult,
+  RawResult,
+  TsdResult,
+} from "./types";
 
-// For reference see:
-// https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
+function toTsdResult<T extends RawResult>(
+  rawResult: T,
+  messagePrefix = ""
+): TsdResult<T> {
+  return {
+    message: [
+      messagePrefix,
+      ts.flattenDiagnosticMessageText(rawResult.messageText, ts.sys.newLine),
+    ].join(""),
+    messageText: rawResult.messageText,
+    file: rawResult.file,
+    start: rawResult.start,
+  };
+}
 
-const silencedErrors = [
-  2314, 2322, 2339, 2344, 2345, 2348, 2349, 2350, 2351, 2540, 2554, 2555, 2559,
-  2575, 2684, 2741, 2743, 2769, 2820, 4113, 4114, 7009,
-];
-
-const topLevelAwaitErrors = [1308, 1378];
+function toTsdErrors(
+  rawErrors: ReadonlyArray<ErrorResult>,
+  messagePrefix = ""
+) {
+  return {
+    tsdErrors: rawErrors.map((error) => toTsdResult(error, messagePrefix)),
+    assertionsCount: 0,
+    tsdResults: [],
+  };
+}
 
 const isDiagnosticWithLocation = (
   diagnostic: ts.Diagnostic
 ): diagnostic is ts.DiagnosticWithLocation => diagnostic.file !== undefined;
 
-function isIgnoredDiagnostic(
-  diagnostic: ts.DiagnosticWithLocation,
-  expectedErrors: Map<Location, ts.Node>
-) {
-  if (topLevelAwaitErrors.includes(diagnostic.code)) {
-    return "ignore";
-  }
-
-  if (!silencedErrors.includes(diagnostic.code)) {
-    return "preserve";
-  }
-
-  const diagnosticFileName = diagnostic.file.fileName;
-  const diagnosticStart = diagnostic.start;
-
-  for (const [location] of expectedErrors) {
-    if (
-      diagnosticFileName === location.fileName &&
-      diagnosticStart > location.start &&
-      diagnosticStart < location.end
-    ) {
-      return location;
-    }
-  }
-
-  return "preserve";
-}
-
 export function tsdLite(testFilePath: string): {
-  assertionCount: number;
-  tsdResults: Array<TsdResult>;
-  tsdErrors?: ReadonlyArray<ts.Diagnostic | ts.DiagnosticWithLocation>;
+  assertionsCount: number;
+  tsdResults: Array<TsdResult<AssertionResult>>;
+  tsdErrors?: Array<TsdResult<ErrorResult>>;
 } {
   const { compilerOptions, configDiagnostics } =
     resolveCompilerOptions(testFilePath);
 
   if (configDiagnostics.length !== 0) {
-    return {
-      tsdErrors: configDiagnostics,
-      assertionCount: 0,
-      tsdResults: [],
-    };
+    return toTsdErrors(configDiagnostics);
   }
 
   const program = ts.createProgram([testFilePath], compilerOptions);
   const syntacticDiagnostics = program.getSyntacticDiagnostics();
 
   if (syntacticDiagnostics.length !== 0) {
-    return {
-      tsdErrors: syntacticDiagnostics,
-      assertionCount: 0,
-      tsdResults: [],
-    };
+    return toTsdErrors(syntacticDiagnostics, "SyntaxError: ");
   }
 
   const semanticDiagnostics = program.getSemanticDiagnostics();
 
   const typeChecker = program.getTypeChecker();
-  const { assertions, assertionCount } = extractAssertions(program);
+  const { assertions, assertionsCount } = extractAssertions(program);
 
-  const tsdResults = handleAssertions(typeChecker, assertions);
+  const assertionResults = handleAssertions(typeChecker, assertions);
 
   const expectedErrors = parseErrorAssertionToLocation(assertions);
   const expectedErrorsLocationsWithFoundDiagnostics: Location[] = [];
@@ -93,31 +82,32 @@ export function tsdLite(testFilePath: string): {
       continue;
     }
 
-    const ignoreDiagnosticResult = isIgnoredDiagnostic(
-      diagnostic,
-      expectedErrors
-    );
+    const silenceErrorResult = silenceError(diagnostic, expectedErrors);
 
-    if (ignoreDiagnosticResult !== "preserve") {
-      if (ignoreDiagnosticResult !== "ignore") {
-        expectedErrorsLocationsWithFoundDiagnostics.push(
-          ignoreDiagnosticResult
-        );
+    if (silenceErrorResult !== "preserve") {
+      if (silenceErrorResult !== "ignore") {
+        expectedErrorsLocationsWithFoundDiagnostics.push(silenceErrorResult);
       }
 
       continue;
     }
 
-    tsdResults.push(diagnostic);
+    assertionResults.push(diagnostic);
   }
 
-  for (const errorLocationToRemove of expectedErrorsLocationsWithFoundDiagnostics) {
-    expectedErrors.delete(errorLocationToRemove);
+  for (const errorLocation of expectedErrorsLocationsWithFoundDiagnostics) {
+    expectedErrors.delete(errorLocation);
   }
 
   for (const [, node] of expectedErrors) {
-    tsdResults.push(makeTsdResult(node, "Expected an error, but found none."));
+    assertionResults.push(
+      toAssertionResult(node, "Expected an error, but found none.")
+    );
   }
 
-  return { assertionCount, tsdResults };
+  const tsdResults = assertionResults.map((result) => {
+    return toTsdResult(result);
+  });
+
+  return { assertionsCount, tsdResults };
 }

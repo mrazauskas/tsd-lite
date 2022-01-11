@@ -25,10 +25,10 @@ test("returns `ts.SourceFile` object", () => {
   `);
 });
 
-test("returns `assertionCount`", () => {
-  const { assertionCount } = tsd(fixturePath("failing"));
+test("returns `assertionsCount`", () => {
+  const { assertionsCount } = tsd(fixturePath("failing"));
 
-  expect(assertionCount).toBe(4);
+  expect(assertionsCount).toBe(4);
 });
 
 test("passing", () => {
