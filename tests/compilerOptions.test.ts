@@ -18,7 +18,7 @@ test("`compilerOptions.strict` in nearest `tsconfig.json`", () => {
 });
 
 test("when parsing `tsconfig.json` returns errors", () => {
-  const { assertionCount, tsdErrors, tsdResults } = tsd(
+  const { assertionsCount, tsdErrors, tsdResults } = tsd(
     fixturePath("compilerOptions-errors")
   );
 
@@ -29,7 +29,7 @@ test("when parsing `tsconfig.json` returns errors", () => {
 
   expect(normalizeErrors(tsdErrors)).toMatchObject([
     {
-      message: expect.stringContaining("Argument for '--module' option must"),
+      message: expect.stringMatching(/^Argument for '--module' option must/),
       line: 3,
       character: 15,
     },
@@ -39,11 +39,11 @@ test("when parsing `tsconfig.json` returns errors", () => {
       character: 15,
     },
     {
-      message: expect.stringContaining("No inputs were found in config file"),
+      message: expect.stringMatching(/^No inputs were found in config file/),
       file: undefined,
     },
   ]);
 
-  expect(assertionCount).toBe(0);
+  expect(assertionsCount).toBe(0);
   expect(tsdResults).toHaveLength(0);
 });

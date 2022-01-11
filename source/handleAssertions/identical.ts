@@ -1,12 +1,12 @@
 import type * as ts from "@tsd/typescript";
-import { makeTsdResult } from "./makeTsdResult";
-import type { TsdResult } from "../types";
+import type { AssertionResult } from "../types";
+import { toAssertionResult } from "./";
 
 export function expectType(
   checker: ts.TypeChecker,
   nodes: Set<ts.CallExpression>
-): TsdResult[] {
-  const tsdResults: TsdResult[] = [];
+): AssertionResult[] {
+  const tsdResults: AssertionResult[] = [];
 
   if (!nodes) {
     return tsdResults;
@@ -27,7 +27,7 @@ export function expectType(
 
     if (!checker.isTypeAssignableTo(expectedType, argumentType)) {
       tsdResults.push(
-        makeTsdResult(
+        toAssertionResult(
           node,
           `Parameter type '${checker.typeToString(
             expectedType
@@ -42,7 +42,7 @@ export function expectType(
        * if the types are identical. See https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#3.11.2.
        */
       tsdResults.push(
-        makeTsdResult(
+        toAssertionResult(
           node,
           `Parameter type '${checker.typeToString(
             expectedType
@@ -60,8 +60,8 @@ export function expectType(
 export function expectNotType(
   checker: ts.TypeChecker,
   nodes: Set<ts.CallExpression>
-): TsdResult[] {
-  const tsdResults: TsdResult[] = [];
+): AssertionResult[] {
+  const tsdResults: AssertionResult[] = [];
 
   if (!nodes) {
     return tsdResults;
@@ -77,7 +77,7 @@ export function expectNotType(
 
     if (checker.isTypeIdenticalTo(expectedType, argumentType)) {
       tsdResults.push(
-        makeTsdResult(
+        toAssertionResult(
           node,
           `Parameter type '${checker.typeToString(
             expectedType

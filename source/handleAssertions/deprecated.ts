@@ -1,6 +1,6 @@
 import * as ts from "@tsd/typescript";
-import { makeTsdResult } from "./makeTsdResult";
-import type { Handler, TsdResult } from "../types";
+import type { AssertionResult } from "../types";
+import { type Handler, toAssertionResult } from "./";
 
 export function expressionToString(
   checker: ts.TypeChecker,
@@ -49,7 +49,7 @@ type Options = {
 
 function expectDeprecatedHelper(options: Options): Handler {
   return (checker, nodes) => {
-    const tsdResults: TsdResult[] = [];
+    const tsdResults: AssertionResult[] = [];
 
     if (!nodes) {
       return tsdResults;
@@ -66,7 +66,7 @@ function expectDeprecatedHelper(options: Options): Handler {
 
       const message = expressionToString(checker, argument);
 
-      tsdResults.push(makeTsdResult(node, options.message(message ?? "?")));
+      tsdResults.push(toAssertionResult(node, options.message(message ?? "?")));
     }
 
     return tsdResults;

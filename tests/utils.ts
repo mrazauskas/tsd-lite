@@ -1,26 +1,26 @@
 import { join } from "path";
 import type * as ts from "@tsd/typescript";
-import type { TsdResult } from "../";
+import type { AssertionResult, ErrorResult, TsdResult } from "../source/types";
 
 export const fixturePath = (fixture: string): string =>
   join(__dirname, fixture, "index.test.ts");
 
 type NormalizedResult = {
-  message: string | ts.DiagnosticMessageChain;
+  message: string;
   file: ts.SourceFile;
   line: number;
   character: number;
 };
 
 export function normalizeResults(
-  results: Array<TsdResult>
+  results: Array<TsdResult<AssertionResult>>
 ): Array<NormalizedResult> {
   return results.map((result) => {
     const { line, character } = result.file.getLineAndCharacterOfPosition(
       result.start
     );
     return {
-      message: result.messageText,
+      message: result.message,
       file: result.file,
       line: line + 1,
       character: character + 1,
@@ -29,35 +29,36 @@ export function normalizeResults(
 }
 
 type NormalizedError = {
-  message: string | ts.DiagnosticMessageChain;
+  message: string;
   file?: ts.SourceFile;
   line?: number;
   character?: number;
 };
 
 const isDiagnosticWithLocation = (
-  diagnostic: ts.Diagnostic
-): diagnostic is ts.DiagnosticWithLocation => diagnostic.file !== undefined;
+  diagnostic: TsdResult<ErrorResult>
+): diagnostic is TsdResult<ts.DiagnosticWithLocation> =>
+  diagnostic.file !== undefined;
 
 export function normalizeErrors(
-  diagnostics: ReadonlyArray<ts.Diagnostic | ts.DiagnosticWithLocation> = []
+  errors: Array<TsdResult<ErrorResult>> = []
 ): Array<NormalizedError> {
-  return diagnostics.map((diagnostic) => {
-    if (isDiagnosticWithLocation(diagnostic)) {
-      const { line, character } = diagnostic.file.getLineAndCharacterOfPosition(
-        diagnostic.start
+  return errors.map((error) => {
+    if (isDiagnosticWithLocation(error)) {
+      const { line, character } = error.file.getLineAndCharacterOfPosition(
+        error.start
       );
       return {
-        message: diagnostic.messageText,
-        file: diagnostic.file,
+        message: error.message,
+        file: error.file,
         line: line + 1,
         character: character + 1,
       };
     }
 
     return {
-      message: diagnostic.messageText,
-      file: diagnostic.file,
+      message: error.message,
+      file: error.file,
     };
   });
 }
