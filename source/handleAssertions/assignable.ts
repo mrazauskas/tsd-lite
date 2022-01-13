@@ -5,8 +5,8 @@ import { toAssertionResult } from "./";
 export function expectNotAssignable(
   checker: ts.TypeChecker,
   nodes: Set<ts.CallExpression>
-): AssertionResult[] {
-  const tsdResults: AssertionResult[] = [];
+): Array<AssertionResult> {
+  const tsdResults: Array<AssertionResult> = [];
 
   if (!nodes) {
     return tsdResults;

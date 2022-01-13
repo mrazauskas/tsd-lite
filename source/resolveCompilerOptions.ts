@@ -3,7 +3,7 @@ import * as ts from "@tsd/typescript";
 
 export function resolveCompilerOptions(searchPath: string): {
   compilerOptions: ts.CompilerOptions;
-  configDiagnostics: ts.Diagnostic[];
+  configDiagnostics: Array<ts.Diagnostic>;
 } {
   const configPath = ts.findConfigFile(searchPath, ts.sys.fileExists);
 

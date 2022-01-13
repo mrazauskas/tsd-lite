@@ -17,7 +17,7 @@ export enum Assertion {
 export type Handler = (
   typeChecker: ts.TypeChecker,
   nodes: Set<ts.CallExpression>
-) => AssertionResult[];
+) => Array<AssertionResult>;
 
 const assertionHandlers = new Map<Assertion, Handler>([
   [Assertion.EXPECT_TYPE, expectType],
@@ -30,8 +30,8 @@ const assertionHandlers = new Map<Assertion, Handler>([
 export function handleAssertions(
   typeChecker: ts.TypeChecker,
   assertions: Map<Assertion, Set<ts.CallExpression>>
-): AssertionResult[] {
-  const tsdResults: AssertionResult[] = [];
+): Array<AssertionResult> {
+  const tsdResults: Array<AssertionResult> = [];
 
   for (const [assertion, nodes] of assertions) {
     const handler = assertionHandlers.get(assertion);

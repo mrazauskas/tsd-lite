@@ -49,7 +49,7 @@ type Options = {
 
 function expectDeprecatedHelper(options: Options): Handler {
   return (checker, nodes) => {
-    const tsdResults: AssertionResult[] = [];
+    const tsdResults: Array<AssertionResult> = [];
 
     if (!nodes) {
       return tsdResults;

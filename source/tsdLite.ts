@@ -66,7 +66,7 @@ export function tsdLite(testFilePath: string): {
   const assertionResults = handleAssertions(typeChecker, assertions);
 
   const expectedErrors = parseErrorAssertionToLocation(assertions);
-  const expectedErrorsLocationsWithFoundDiagnostics: Location[] = [];
+  const expectedErrorsLocationsWithFoundDiagnostics: Array<Location> = [];
 
   for (const diagnostic of semanticDiagnostics) {
     if (isDiagnosticWithLocation(diagnostic)) {

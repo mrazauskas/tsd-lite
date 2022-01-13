@@ -5,8 +5,8 @@ import { toAssertionResult } from "./";
 export function expectType(
   checker: ts.TypeChecker,
   nodes: Set<ts.CallExpression>
-): AssertionResult[] {
-  const tsdResults: AssertionResult[] = [];
+): Array<AssertionResult> {
+  const tsdResults: Array<AssertionResult> = [];
 
   if (!nodes) {
     return tsdResults;
@@ -60,8 +60,8 @@ export function expectType(
 export function expectNotType(
   checker: ts.TypeChecker,
   nodes: Set<ts.CallExpression>
-): AssertionResult[] {
-  const tsdResults: AssertionResult[] = [];
+): Array<AssertionResult> {
+  const tsdResults: Array<AssertionResult> = [];
 
   if (!nodes) {
     return tsdResults;

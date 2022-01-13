@@ -8,6 +8,7 @@
   "plugins": ["@typescript-eslint"],
   "root": true,
   "rules": {
+    "@typescript-eslint/array-type": ["error", { "default": "generic" }],
     "@typescript-eslint/explicit-module-boundary-types": "error"
   }
 }
