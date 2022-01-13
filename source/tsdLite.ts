@@ -78,10 +78,6 @@ export function tsdLite(testFilePath: string): {
       continue;
     }
 
-    if (/[/\\]node_modules[/\\]/.test(diagnostic.file.fileName)) {
-      continue;
-    }
-
     const silenceErrorResult = silenceError(diagnostic, expectedErrors);
 
     if (silenceErrorResult !== "preserve") {
