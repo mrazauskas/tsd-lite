@@ -7,17 +7,12 @@ import {
 } from "./parser";
 import { resolveCompilerOptions } from "./resolveCompilerOptions";
 import { silenceError } from "./silenceError";
-import type {
-  AssertionResult,
-  ErrorResult,
-  RawResult,
-  TsdResult,
-} from "./types";
+import type { AssertionResult, TsdResult } from "./types";
 
-function toTsdResult<T extends RawResult>(
-  rawResult: T,
+function toTsdResult(
+  rawResult: AssertionResult | ts.Diagnostic,
   messagePrefix = ""
-): TsdResult<T> {
+): TsdResult {
   return {
     message: [
       messagePrefix,
@@ -30,7 +25,7 @@ function toTsdResult<T extends RawResult>(
 }
 
 function toTsdErrors(
-  rawErrors: ReadonlyArray<ErrorResult>,
+  rawErrors: ReadonlyArray<ts.Diagnostic>,
   messagePrefix = ""
 ) {
   return {
@@ -46,8 +41,8 @@ const isDiagnosticWithLocation = (
 
 export function tsdLite(testFilePath: string): {
   assertionsCount: number;
-  tsdResults: Array<TsdResult<AssertionResult>>;
-  tsdErrors?: Array<TsdResult<ErrorResult>>;
+  tsdResults: Array<TsdResult>;
+  tsdErrors?: Array<TsdResult>;
 } {
   const { compilerOptions, configDiagnostics } =
     resolveCompilerOptions(testFilePath);
@@ -74,18 +69,15 @@ export function tsdLite(testFilePath: string): {
   const expectedErrorsLocationsWithFoundDiagnostics: Location[] = [];
 
   for (const diagnostic of semanticDiagnostics) {
-    if (!isDiagnosticWithLocation(diagnostic)) {
-      continue;
-    }
+    if (isDiagnosticWithLocation(diagnostic)) {
+      const silenceErrorResult = silenceError(diagnostic, expectedErrors);
 
-    const silenceErrorResult = silenceError(diagnostic, expectedErrors);
-
-    if (silenceErrorResult !== "preserve") {
-      if (silenceErrorResult !== "ignore") {
-        expectedErrorsLocationsWithFoundDiagnostics.push(silenceErrorResult);
+      if (silenceErrorResult !== "preserve") {
+        if (silenceErrorResult !== "ignore") {
+          expectedErrorsLocationsWithFoundDiagnostics.push(silenceErrorResult);
+        }
+        continue;
       }
-
-      continue;
     }
 
     assertionResults.push(diagnostic);

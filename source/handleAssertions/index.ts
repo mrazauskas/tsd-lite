@@ -31,7 +31,7 @@ export function handleAssertions(
   typeChecker: ts.TypeChecker,
   assertions: Map<Assertion, Set<ts.CallExpression>>
 ): AssertionResult[] {
-  const tadResults: AssertionResult[] = [];
+  const tsdResults: AssertionResult[] = [];
 
   for (const [assertion, nodes] of assertions) {
     const handler = assertionHandlers.get(assertion);
@@ -40,10 +40,10 @@ export function handleAssertions(
       continue;
     }
 
-    tadResults.push(...handler(typeChecker, nodes));
+    tsdResults.push(...handler(typeChecker, nodes));
   }
 
-  return tadResults;
+  return tsdResults;
 }
 
 export function toAssertionResult(
