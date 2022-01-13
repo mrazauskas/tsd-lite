@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "yarn lint:cspell && yarn lint:eslint && yarn lint:prettier",
-    "lint:cspell": "cspell --gitignore --no-progress --relative --show-context --show-suggestions",
+    "lint:cspell": "cspell --relative --show-context --show-suggestions",
     "lint:eslint": "eslint . --ext .ts",
     "lint:prettier": "prettier . --write",
     "test": "jest"

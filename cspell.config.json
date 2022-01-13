@@ -1,5 +1,6 @@
 {
-  "language": "en-US",
   "files": ["source/**/*", "tests/**/*", "*.md"],
+  "language": "en-US",
+  "useGitignore": true,
   "words": ["Verschueren"]
 }
