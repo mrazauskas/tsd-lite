@@ -1,5 +1,5 @@
 import { dirname } from "path";
-import * as ts from "typescript";
+import * as ts from "@tsd/typescript";
 
 export function resolveCompilerOptions(searchPath: string): {
   compilerOptions: ts.CompilerOptions;
