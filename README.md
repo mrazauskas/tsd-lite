@@ -52,7 +52,6 @@ The exported function takes fully resolved path to a test file as an argument an
 {
   assertionsCount: number;
   tsdResults: Array<{
-    message: string;
     messageText: string | ts.DiagnosticMessageChain;
     file?: ts.SourceFile;
     start?: number;
