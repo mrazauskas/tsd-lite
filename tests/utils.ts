@@ -1,5 +1,5 @@
 import { join } from "path";
-import type * as ts from "@tsd/typescript";
+import * as ts from "@tsd/typescript";
 import type { TsdResult } from "../source/types";
 
 export const fixturePath = (fixture: string): string =>
@@ -30,7 +30,7 @@ export function normalizeResults(
         result.start
       );
       return {
-        message: result.message,
+        message: ts.flattenDiagnosticMessageText(result.messageText, "\n"),
         file: result.file,
         line: line + 1,
         character: character + 1,
@@ -38,7 +38,7 @@ export function normalizeResults(
     }
 
     return {
-      message: result.message,
+      message: ts.flattenDiagnosticMessageText(result.messageText, "\n"),
       file: result.file,
     };
   });

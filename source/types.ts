@@ -6,6 +6,4 @@ export type AssertionResult = {
   start: number | undefined;
 };
 
-export type TsdResult = AssertionResult & {
-  message: string;
-};
+export type TsdResult = AssertionResult;

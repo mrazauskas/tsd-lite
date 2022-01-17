@@ -15,10 +15,6 @@ import {
 
 function toTsdResult(rawResult: AssertionResult | ts.Diagnostic): TsdResult {
   return {
-    message: ts.flattenDiagnosticMessageText(
-      rawResult.messageText,
-      ts.sys.newLine
-    ),
     messageText: rawResult.messageText,
     file: rawResult.file,
     start: rawResult.start,

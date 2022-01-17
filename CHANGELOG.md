@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚠ BREAKING CHANGES
 
+- do not add flattened `message` to `tsdResults` object. `messageText` is there already and should be used instead.
 - throw error (instead of returning `tsdErrors`) if: TS compiler encountered an error while parsing `tsconfig.json`; or found a syntax error while compiling the code.
 
 ## [0.3.0](https://github.com/mrazauskas/tsd-lite/compare/v0.2.0...v0.3.0) (2022-01-14)
