@@ -1,10 +1,8 @@
 import { dirname } from "path";
 import * as ts from "@tsd/typescript";
+import { TsdError } from "./TsdError";
 
-export function resolveCompilerOptions(searchPath: string): {
-  compilerOptions: ts.CompilerOptions;
-  configDiagnostics: Array<ts.Diagnostic>;
-} {
+export function resolveCompilerOptions(searchPath: string): ts.CompilerOptions {
   const configPath = ts.findConfigFile(searchPath, ts.sys.fileExists);
 
   if (configPath === undefined) {
@@ -22,5 +20,9 @@ export function resolveCompilerOptions(searchPath: string): {
       configPath
     );
 
-  return { compilerOptions, configDiagnostics };
+  if (configDiagnostics.length > 0) {
+    throw new TsdError(configDiagnostics[0], "ConfigError");
+  }
+
+  return compilerOptions;
 }
