@@ -34,7 +34,9 @@ export function extractAssertions(program: ts.Program): {
   }
 
   for (const sourceFile of program.getSourceFiles()) {
-    visit(sourceFile);
+    if (!sourceFile.isDeclarationFile) {
+      visit(sourceFile);
+    }
   }
 
   let assertionsCount = 0;
