@@ -2,11 +2,13 @@ import { dirname } from "path";
 import * as ts from "@tsd/typescript";
 import { TsdError } from "./TsdError";
 
-export function resolveCompilerOptions(searchPath: string): ts.CompilerOptions {
+export function resolveCompilerOptions(
+  searchPath: string
+): ts.CompilerOptions | undefined {
   const configPath = ts.findConfigFile(searchPath, ts.sys.fileExists);
 
   if (configPath === undefined) {
-    return { compilerOptions: {}, configDiagnostics: [] };
+    return;
   }
 
   const sourceFile = ts.readJsonConfigFile(configPath, ts.sys.readFile);

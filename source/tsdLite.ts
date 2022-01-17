@@ -27,7 +27,7 @@ export function tsdLite(testFilePath: string): {
 } {
   const compilerOptions = resolveCompilerOptions(testFilePath);
 
-  const program = ts.createProgram([testFilePath], compilerOptions);
+  const program = ts.createProgram([testFilePath], compilerOptions || {});
   const syntacticDiagnostics = program.getSyntacticDiagnostics();
 
   if (syntacticDiagnostics.length !== 0) {

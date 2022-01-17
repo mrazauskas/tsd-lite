@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+### Bug Fixes
+
+- resolve compiler options correctly if `tsconfig.json` is not found.
+
 ## [0.4.0](https://github.com/mrazauskas/tsd-lite/compare/v0.3.0...v0.4.0) (2022-01-17)
 
 ### ⚠ BREAKING CHANGES
