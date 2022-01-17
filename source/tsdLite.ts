@@ -5,57 +5,37 @@ import {
   extractAssertions,
   parseErrorAssertionToLocation,
 } from "./parser";
-import { resolveCompilerOptions } from "./resolveCompilerOptions";
 import { silenceError } from "./silenceError";
 import type { AssertionResult, TsdResult } from "./types";
+import {
+  TsdError,
+  isDiagnosticWithLocation,
+  resolveCompilerOptions,
+} from "./utils";
 
-function toTsdResult(
-  rawResult: AssertionResult | ts.Diagnostic,
-  messagePrefix = ""
-): TsdResult {
+function toTsdResult(rawResult: AssertionResult | ts.Diagnostic): TsdResult {
   return {
-    message: [
-      messagePrefix,
-      ts.flattenDiagnosticMessageText(rawResult.messageText, ts.sys.newLine),
-    ].join(""),
+    message: ts.flattenDiagnosticMessageText(
+      rawResult.messageText,
+      ts.sys.newLine
+    ),
     messageText: rawResult.messageText,
     file: rawResult.file,
     start: rawResult.start,
   };
 }
 
-function toTsdErrors(
-  rawErrors: ReadonlyArray<ts.Diagnostic>,
-  messagePrefix = ""
-) {
-  return {
-    tsdErrors: rawErrors.map((error) => toTsdResult(error, messagePrefix)),
-    assertionsCount: 0,
-    tsdResults: [],
-  };
-}
-
-const isDiagnosticWithLocation = (
-  diagnostic: ts.Diagnostic
-): diagnostic is ts.DiagnosticWithLocation => diagnostic.file !== undefined;
-
 export function tsdLite(testFilePath: string): {
   assertionsCount: number;
   tsdResults: Array<TsdResult>;
-  tsdErrors?: Array<TsdResult>;
 } {
-  const { compilerOptions, configDiagnostics } =
-    resolveCompilerOptions(testFilePath);
-
-  if (configDiagnostics.length !== 0) {
-    return toTsdErrors(configDiagnostics);
-  }
+  const compilerOptions = resolveCompilerOptions(testFilePath);
 
   const program = ts.createProgram([testFilePath], compilerOptions);
   const syntacticDiagnostics = program.getSyntacticDiagnostics();
 
   if (syntacticDiagnostics.length !== 0) {
-    return toTsdErrors(syntacticDiagnostics, "SyntaxError: ");
+    throw new TsdError(syntacticDiagnostics[0], "SyntaxError");
   }
 
   const semanticDiagnostics = program.getSemanticDiagnostics();

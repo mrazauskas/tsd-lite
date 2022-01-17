@@ -1,6 +1,10 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file.
+
+### ⚠ BREAKING CHANGES
+
+- throw error (instead of returning `tsdErrors`) if: TS compiler encountered an error while parsing `tsconfig.json`; or found a syntax error while compiling the code.
 
 ## [0.3.0](https://github.com/mrazauskas/tsd-lite/compare/v0.2.0...v0.3.0) (2022-01-14)
 

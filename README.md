@@ -54,17 +54,13 @@ The exported function takes fully resolved path to a test file as an argument an
   tsdResults: Array<{
     message: string;
     messageText: string | ts.DiagnosticMessageChain;
-    file: ts.SourceFile | undefined;
-    start: number | undefined;
-  }>;
-  tsdErrors?: Array<{
-    message: string;
-    messageText: string | ts.DiagnosticMessageChain;
-    file: ts.SourceFile | undefined;
-    start: number | undefined;
+    file?: ts.SourceFile;
+    start?: number;
   }>;
 };
 ```
+
+`tsd-lite` will throw if TS compiler encountered an error while parsing `tsconfig.json` or found a syntax error while compiling the code.
 
 ## License
 
