@@ -3,8 +3,7 @@ import { Assertion } from "./handleAssertions";
 
 export type Location = {
   fileName: string;
-  start: number;
-  end: number;
+  span: ts.TextSpan;
 };
 
 const assertionFnNames = new Set<string>(Object.values(Assertion));
@@ -61,8 +60,7 @@ export function parseErrorAssertionToLocation(
   for (const node of nodes) {
     const location = {
       fileName: node.getSourceFile().fileName,
-      start: node.getStart(),
-      end: node.getEnd(),
+      span: ts.createTextSpanFromBounds(node.pos, node.end),
     };
 
     expectedErrors.set(location, node);

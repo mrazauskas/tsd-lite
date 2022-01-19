@@ -1,4 +1,4 @@
-import type * as ts from "@tsd/typescript";
+import * as ts from "@tsd/typescript";
 import type { Location } from "./parser";
 
 // For reference see:
@@ -23,14 +23,10 @@ export function silenceError(
     return "preserve";
   }
 
-  const diagnosticFileName = diagnostic.file.fileName;
-  const diagnosticStart = diagnostic.start;
-
   for (const [location] of expectedErrors) {
     if (
-      diagnosticFileName === location.fileName &&
-      diagnosticStart > location.start &&
-      diagnosticStart < location.end
+      location.fileName === diagnostic.file.fileName &&
+      ts.textSpanContainsPosition(location.span, diagnostic.start)
     ) {
       return location;
     }
