@@ -13,3 +13,6 @@ expectType<false>(concat(1, 2) as any);
 
 expectType<string>("" as never);
 expectType<any>("" as never);
+
+type T2 = { a: { b: 1 } };
+expectType<T2>({ a: { b: 1 } });

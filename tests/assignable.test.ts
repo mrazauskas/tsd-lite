@@ -10,7 +10,13 @@ test("expectAssignable", () => {
       message:
         "Argument of type 'string' is not assignable to parameter of type 'boolean'.",
       line: 10,
-      character: 27,
+      character: 1,
+    },
+    {
+      message:
+        "Argument of type '{ a: { b: number; }; }' is not assignable to parameter of type 'T2'.",
+      line: 13,
+      character: 1,
     },
   ]);
 });

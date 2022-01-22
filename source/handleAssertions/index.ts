@@ -1,6 +1,6 @@
 import type * as ts from "@tsd/typescript";
 import type { AssertionResult } from "../types";
-import { expectNotAssignable } from "./assignable";
+import { expectAssignable, expectNotAssignable } from "./assignable";
 import { expectDeprecated, expectNotDeprecated } from "./deprecated";
 import { expectType, expectNotType } from "./identical";
 
@@ -22,6 +22,7 @@ export type Handler = (
 const assertionHandlers = new Map<Assertion, Handler>([
   [Assertion.EXPECT_TYPE, expectType],
   [Assertion.EXPECT_NOT_TYPE, expectNotType],
+  [Assertion.EXPECT_ASSIGNABLE, expectAssignable],
   [Assertion.EXPECT_NOT_ASSIGNABLE, expectNotAssignable],
   [Assertion.EXPECT_DEPRECATED, expectDeprecated],
   [Assertion.EXPECT_NOT_DEPRECATED, expectNotDeprecated],

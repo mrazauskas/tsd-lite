@@ -8,3 +8,6 @@ expectAssignable<string | number>(concat(1, 2));
 expectAssignable<any>(concat(1, 2));
 
 expectAssignable<boolean>(concat("unicorn", "rainbow"));
+
+type T2 = { a: { b: 1 } };
+expectAssignable<T2>({ a: { b: 1 } });
