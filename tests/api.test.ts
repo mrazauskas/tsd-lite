@@ -47,7 +47,7 @@ test("failing", () => {
       message:
         "Argument of type 'Date' is not assignable to parameter of type 'string'.",
       line: 5,
-      character: 20,
+      character: 1,
     },
     {
       message: "Expected an error, but found none.",
@@ -63,21 +63,21 @@ test("failing-nested", () => {
   expect(normalizeResults(tsdResults)).toMatchObject([
     {
       file: {
-        fileName: expect.stringContaining("index.test.ts"),
-      },
-      message:
-        "Argument of type 'number' is not assignable to parameter of type 'string'.",
-      line: 6,
-      character: 20,
-    },
-    {
-      file: {
         fileName: expect.stringContaining("nested.ts"),
       },
       message:
         "Argument of type 'number' is not assignable to parameter of type 'string'.",
       line: 5,
-      character: 20,
+      character: 1,
+    },
+    {
+      file: {
+        fileName: expect.stringContaining("index.test.ts"),
+      },
+      message:
+        "Argument of type 'number' is not assignable to parameter of type 'string'.",
+      line: 6,
+      character: 1,
     },
   ]);
 });

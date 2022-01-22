@@ -8,3 +8,6 @@ expectNotAssignable<any>(concat("foo", "bar"));
 
 expectNotAssignable<boolean>(concat("unicorn", "rainbow"));
 expectNotAssignable<symbol>(concat("unicorn", "rainbow"));
+
+type T2 = { a: { b: 1 } };
+expectNotAssignable<T2>({ a: { b: 1 } });

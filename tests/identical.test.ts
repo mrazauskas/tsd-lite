@@ -36,6 +36,12 @@ test("expectType", () => {
       line: 15,
       character: 1,
     },
+    {
+      message:
+        "Argument of type '{ a: { b: number; }; }' is not assignable to parameter of type 'T2'.",
+      line: 18,
+      character: 1,
+    },
   ]);
 });
 

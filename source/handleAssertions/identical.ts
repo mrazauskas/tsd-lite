@@ -21,7 +21,16 @@ export function expectType(
     const argumentType = checker.getTypeAtLocation(node.arguments[0]);
 
     if (!checker.isTypeAssignableTo(argumentType, expectedType)) {
-      // The argument type is not assignable to the expected type. TypeScript will catch this for us.
+      tsdResults.push(
+        toAssertionResult(
+          node,
+          `Argument of type '${checker.typeToString(
+            argumentType
+          )}' is not assignable to parameter of type '${checker.typeToString(
+            expectedType
+          )}'.`
+        )
+      );
       continue;
     }
 
@@ -37,10 +46,6 @@ export function expectType(
         )
       );
     } else if (!checker.isTypeIdenticalTo(expectedType, argumentType)) {
-      /**
-       * The expected type and argument type are assignable in both directions. We still have to check
-       * if the types are identical. See https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#3.11.2.
-       */
       tsdResults.push(
         toAssertionResult(
           node,
