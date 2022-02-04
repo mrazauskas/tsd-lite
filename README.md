@@ -9,7 +9,7 @@ This is a lighter version of [tsd](https://npmjs.com/package/tsd). Slightly rewo
 
 ## Motivation
 
-While `tsd` suites perfectly for JavaScript libraries which declare their types in `.d.ts` files, its usage with monorepos written in TypeScript may become [cumbersome](https://github.com/SamVerschueren/tsd/issues/32). `tsd-light` is an attempt to address these and similar issues.
+While `tsd` suites perfectly for JavaScript libraries which declare their types in `.d.ts` files, its usage with monorepos written in TypeScript may become [cumbersome](https://github.com/SamVerschueren/tsd/issues/32). `tsd-lite` is an attempt to address these and similar issues.
 
 ## Differences from `tsd`
 
