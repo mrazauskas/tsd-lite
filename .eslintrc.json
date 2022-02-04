@@ -9,7 +9,7 @@
   "plugins": ["@typescript-eslint"],
   "overrides": [
     {
-      "files": ["source/assertions.ts"],
+      "files": ["source/assertions.ts", "**/*.test.ts"],
       "rules": {
         "@typescript-eslint/no-unused-vars": ["off"]
       }
