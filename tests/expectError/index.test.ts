@@ -77,11 +77,19 @@ expectError(
 
 // generics
 
+interface Matchers<R, T = unknown> {
+  someMatcher(expected: T): R;
+}
+
 expectError(gOne(true, true));
 
 expectError(gOne<number>(1, 2));
 
 expectError(gTwo<number, string>(1, "bar"));
+
+expectError(() => {
+  type E = Matchers;
+});
 
 // functions
 

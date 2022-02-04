@@ -13,7 +13,7 @@ test("expectError", () => {
     },
     {
       message: "Expected an error, but found none.",
-      line: 89,
+      line: 97,
       character: 1,
     },
   ]);
