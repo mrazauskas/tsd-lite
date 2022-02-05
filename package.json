@@ -1,6 +1,6 @@
 {
   "name": "tsd-lite",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Test your TypeScript types easily",
   "license": "MIT",
   "repository": "https://github.com/mrazauskas/tsd-lite.git",
