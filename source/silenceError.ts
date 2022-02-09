@@ -5,8 +5,8 @@ import type { Location } from "./parser";
 // https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
 
 const silencedErrors = [
-  2314, 2322, 2339, 2344, 2345, 2348, 2349, 2350, 2351, 2540, 2554, 2555, 2559,
-  2575, 2684, 2707, 2741, 2743, 2769, 2820, 4113, 4114, 7009,
+  2314, 2322, 2339, 2344, 2345, 2348, 2349, 2350, 2351, 2540, 2542, 2554, 2555,
+  2559, 2575, 2684, 2707, 2741, 2743, 2769, 2820, 4113, 4114, 7009,
 ];
 
 const topLevelAwaitErrors = [1308, 1378];
