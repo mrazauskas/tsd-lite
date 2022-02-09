@@ -7,6 +7,8 @@
 
 This is a lighter version of [tsd](https://npmjs.com/package/tsd). Slightly reworked codebase allows `tsd-lite` to be a tool which simply tests your types.
 
+**Note:** This library is intended for programmatic use only. For CLI implementation see [`jest-runner-tsd`](https://github.com/jest-community/jest-runner-tsd).
+
 ## Motivation
 
 While `tsd` suites perfectly for JavaScript libraries which declare their types in `.d.ts` files, its usage with monorepos written in TypeScript may become [cumbersome](https://github.com/SamVerschueren/tsd/issues/32). `tsd-lite` is an attempt to address these and similar issues.
@@ -31,8 +33,6 @@ yarn add -D tsd-lite @tsd/typescript
 Remember to install `@tsd/typescript`. It is a required peer dependency.
 
 ## Usage
-
-This library is intended for programmatic use only.
 
 ```ts
 import tsdLite from "tsd-lite";
