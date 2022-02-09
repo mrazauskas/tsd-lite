@@ -100,3 +100,14 @@ expectError(fTwo("foo", "bar"));
 
 // Produces multiple type checker errors in a single `expectError` assertion
 expectError(fThree(["a", "bad"]));
+
+type StrictReadonlyValues = {
+  readonly [type: string]: ReadonlyArray<string>;
+};
+
+expectError(() => {
+  const readonlyValues: StrictReadonlyValues = {
+    someValue: ["south", "east"],
+  };
+  readonlyValues.someValue = ["north", "west"];
+});
