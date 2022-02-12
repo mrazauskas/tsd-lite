@@ -111,3 +111,13 @@ expectError(() => {
   };
   readonlyValues.someValue = ["north", "west"];
 });
+
+expectError(() => {
+  function lacksElseBranch(arg: string): { pass: boolean } {
+    if (arg === "value") {
+      return {
+        pass: true,
+      };
+    }
+  }
+});
