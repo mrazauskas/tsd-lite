@@ -3458,9 +3458,9 @@ __metadata:
   linkType: hard
 
 "fast-equals@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "fast-equals@npm:3.0.2"
-  checksum: ff099752321d96ba19ebfa4205251f702cca1c0eb605906bd43dc57d3397d1f9dd26a5fba9da0e5aaca202c0c98500b03801235402b0ac5d9e129922fc8193bd
+  version: 3.0.3
+  resolution: "fast-equals@npm:3.0.3"
+  checksum: e7ac0ae5a10289c773f75654ced22563837336bde7ebb595b7d238a20b77008a821c1ca3526a50e96fe0662ced7454cf99b7488bb64506463a4f4729c523ac4c
   languageName: node
   linkType: hard
 
