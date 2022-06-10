@@ -1,7 +1,8 @@
 {
-  "extends": ["config:base"],
-  "lockFileMaintenance": { "enabled": true, "automerge": true },
-  "postUpdateOptions": ["yarnDedupeHighest"],
-  "rangeStrategy": "replace",
-  "semanticCommits": "enabled"
+  "extends": ["config:base", ":semanticCommits"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  },
+  "postUpdateOptions": ["yarnDedupeHighest"]
 }
