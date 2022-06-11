@@ -1,4 +1,9 @@
 {
-  "extends": ["config:base", "schedule:weekly", ":semanticCommits"],
-  "postUpdateOptions": ["yarnDedupeHighest"]
+  "extends": [
+    "config:base",
+    "schedule:weekly",
+    ":automergeMinor",
+    ":maintainLockFilesWeekly",
+    ":semanticCommits"
+  ]
 }
