@@ -1,5 +1,6 @@
 {
   "injectGlobals": false,
+  "reporters": ["default", "github-actions"],
   "testMatch": ["**/tests/*.test.ts"],
   "testTimeout": 25000
 }
