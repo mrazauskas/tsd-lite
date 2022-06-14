@@ -1,5 +1,5 @@
 {
   "injectGlobals": false,
-  "testMatch": ["<rootDir>/tests/*.test.ts"],
-  "testTimeout": 24000
+  "testMatch": ["**/tests/*.test.ts"],
+  "testTimeout": 25000
 }
