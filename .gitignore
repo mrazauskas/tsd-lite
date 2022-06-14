@@ -1,6 +1,6 @@
 build
+coverage
 node_modules
-*.log
 
 .yarn/*
 !.yarn/patches
