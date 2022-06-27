@@ -4,7 +4,7 @@
 
 [![version](https://img.shields.io/npm/v/tsd-lite)](https://npmjs.com/package/tsd-lite)
 [![license](https://img.shields.io/github/license/mrazauskas/tsd-lite)](https://github.com/mrazauskas/tsd-lite/blob/main/LICENSE.md)
-[![ci](https://img.shields.io/github/workflow/status/mrazauskas/tsd-lite/node-ci?label=CI)](https://github.com/mrazauskas/tsd-lite/actions/workflows/node-ci.yml)
+[![node-ci](https://img.shields.io/github/workflow/status/mrazauskas/tsd-lite/node-ci?label=CI)](https://github.com/mrazauskas/tsd-lite/actions/workflows/node-ci.yml)
 
 This is a lighter version of [tsd](https://npmjs.com/package/tsd). Slightly reworked codebase allows `tsd-lite` to be a tool which simply tests your types.
 
@@ -58,7 +58,7 @@ The exported function takes fully resolved path to a test file as an argument an
     file?: ts.SourceFile;
     start?: number;
   }>;
-};
+}
 ```
 
 `tsd-lite` will throw if TS compiler encountered an error while parsing `tsconfig.json` or a syntax error is found while compiling the code.
