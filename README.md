@@ -2,8 +2,9 @@
 
 > Test your TypeScript types easily.
 
-[![version](https://img.shields.io/npm/v/tsd-lite.svg)](https://npmjs.com/package/tsd-lite)
-[![license](https://img.shields.io/github/license/mrazauskas/tsd-lite.svg)](https://github.com/mrazauskas/tsd-lite/blob/main/LICENSE.md)
+[![version](https://img.shields.io/npm/v/tsd-lite)](https://npmjs.com/package/tsd-lite)
+[![license](https://img.shields.io/github/license/mrazauskas/tsd-lite)](https://github.com/mrazauskas/tsd-lite/blob/main/LICENSE.md)
+[![ci](https://img.shields.io/github/workflow/status/mrazauskas/tsd-lite/node-ci?label=CI)](https://github.com/mrazauskas/tsd-lite/actions/workflows/node-ci.yml)
 
 This is a lighter version of [tsd](https://npmjs.com/package/tsd). Slightly reworked codebase allows `tsd-lite` to be a tool which simply tests your types.
 
