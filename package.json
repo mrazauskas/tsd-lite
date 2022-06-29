@@ -3,7 +3,10 @@
   "version": "0.5.4",
   "description": "Test your TypeScript types easily",
   "license": "MIT",
-  "repository": "https://github.com/mrazauskas/tsd-lite.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrazauskas/tsd-lite.git"
+  },
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "homepage": "https://github.com/mrazauskas/tsd-lite",
