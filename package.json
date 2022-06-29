@@ -6,6 +6,10 @@
   "repository": "https://github.com/mrazauskas/tsd-lite.git",
   "main": "build/index.js",
   "types": "build/index.d.ts",
+  "homepage": "https://github.com/mrazauskas/tsd-lite",
+  "bugs": {
+    "url": "https://github.com/mrazauskas/tsd-lite/issues"
+  },
   "engines": {
     "node": ">=12"
   },
