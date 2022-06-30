@@ -32,7 +32,7 @@
     "lint:cspell": "cspell --relative --show-context --show-suggestions",
     "lint:eslint": "eslint . --ext .ts",
     "lint:prettier": "prettier . --write",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "yarn install && yarn build",
     "test": "jest"
   },
   "devDependencies": {
