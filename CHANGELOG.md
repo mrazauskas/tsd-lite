@@ -1,47 +1,82 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [0.5.4] - 2022-05-16
 
-## [0.4.1](https://github.com/mrazauskas/tsd-lite/compare/v0.4.0...v0.4.1) (2022-01-17)
+### Fixed
 
-### Bug Fixes
+- Expose `TsdResult` type ([#47](https://github.com/mrazauskas/tsd-lite/pull/47))
 
-- resolve compiler options correctly if `tsconfig.json` is not found.
+## [0.5.3] - 2022-02-12
 
-## [0.4.0](https://github.com/mrazauskas/tsd-lite/compare/v0.3.0...v0.4.0) (2022-01-17)
+### Fixed
 
-### ⚠ BREAKING CHANGES
+- Add `ts2366` to the list of expected errors ([#24](https://github.com/mrazauskas/tsd-lite/pull/24))
 
-- do not add flattened `message` to `tsdResults` object. `messageText` is there already and should be used instead.
-- throw error (instead of returning `tsdErrors`) if: TS compiler encountered an error while parsing `tsconfig.json`; or found a syntax error while compiling the code.
+## [0.5.2] - 2022-02-09
 
-### Performance
+### Fixed
 
-- parser will skip declaration files while extracting assertions.
+- Add `ts2542` to the list of expected errors ([#23](https://github.com/mrazauskas/tsd-lite/pull/23))
 
-## [0.3.0](https://github.com/mrazauskas/tsd-lite/compare/v0.2.0...v0.3.0) (2022-01-14)
+## [0.5.1] - 2022-02-05
 
-### ⚠ BREAKING CHANGES
+### Fixed
 
-- do not silence diagnostics without location
-- do not silence diagnostics for files from `node_modules` directories
+- Add `ts2707` to the list of expected errors ([#20](https://github.com/mrazauskas/tsd-lite/pull/20))
 
-## [0.2.0](https://github.com/mrazauskas/tsd-lite/compare/v0.1.0...v0.2.0) (2022-01-12)
+## [0.5.0] - 2022-02-04
 
-### ⚠ BREAKING CHANGES
+### Fixed
 
-- reshape members of the returned object (#11)
-- fail early if syntax errors are found (#10)
-- return `configDiagnostics` alongside with `tsdResults` (#7)
-- return `tsdResult` instead of `diagnostics` (#6)
-- return ts-style diagnostics (#5)
+- **Breaking:** Add assertion logic for `expectAssignable` and `expectType` assertions ([#17](https://github.com/mrazauskas/tsd-lite/pull/17))
 
-### Features
+## [0.4.1] - 2022-01-17
 
-- reshape members of the returned object ([#11](https://github.com/mrazauskas/tsd-lite/issues/11)) ([46880f9](https://github.com/mrazauskas/tsd-lite/commit/46880f9bbf2c451b735284332fd32cd0cfe666e3))
-- fail early if syntax errors are found ([#10](https://github.com/mrazauskas/tsd-lite/issues/10)) ([53928a7](https://github.com/mrazauskas/tsd-lite/commit/53928a77caa776258864761b1c6cc43b601cf5ae))
-- return `configDiagnostics` alongside with `tsdResults` ([#7](https://github.com/mrazauskas/tsd-lite/issues/7)) ([6ab9ec2](https://github.com/mrazauskas/tsd-lite/commit/6ab9ec232e3636450168eb5b9a88c0224b5e3d94))
-- return `tsdResult` instead of `diagnostics` ([#6](https://github.com/mrazauskas/tsd-lite/issues/6)) ([28c0ceb](https://github.com/mrazauskas/tsd-lite/commit/28c0ceb85c5b5399e0f24e2c58e494d932081abd))
-- return ts-style diagnostics ([#5](https://github.com/mrazauskas/tsd-lite/issues/5)) ([11d60f2](https://github.com/mrazauskas/tsd-lite/commit/11d60f23e829e1cea542eb4660965c22396fbf60))
+### Fixed
 
-## 0.1.0 (2022-01-04)
+- Resolve compiler options correctly if `tsconfig.json` is not found ([#16](https://github.com/mrazauskas/tsd-lite/pull/16))
+
+## [0.4.0] - 2022-01-17
+
+### Changed
+
+- **Breaking:** Do not add flattened `message` to `tsdResults` object ([#14](https://github.com/mrazauskas/tsd-lite/pull/14))
+- **Breaking:** Throw error (instead of returning `tsdErrors`) ([#13](https://github.com/mrazauskas/tsd-lite/pull/13))
+
+### Fixed
+
+- Skip declaration files while extracting assertions ([#15](https://github.com/mrazauskas/tsd-lite/pull/15))
+
+## [0.3.0] - 2022-01-14
+
+### Changed
+
+- **Breaking:** Do not silence diagnostics without location
+- **Breaking:** Do not silence diagnostics for files from `node_modules` directories
+
+## [0.2.0] - 2022-01-12
+
+### Changed
+
+- **Breaking:** Reshape members of the returned object ([#11](https://github.com/mrazauskas/tsd-lite/pull/11))
+- **Breaking:** Return `configDiagnostics` alongside with `tsdResults` ([#7](https://github.com/mrazauskas/tsd-lite/pull/7))
+- **Breaking:** Return `tsdResult` instead of `diagnostics` ([#6](https://github.com/mrazauskas/tsd-lite/pull/6), [#5](https://github.com/mrazauskas/tsd-lite/pull/5))
+
+### Fixed
+
+- Fail early if syntax errors are found ([#10](https://github.com/mrazauskas/tsd-lite/pull/10))
+
+## [0.1.0] - 2022-01-04
+
+_First release._
+
+[0.5.4]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.4
+[0.5.3]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.3
+[0.5.2]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.2
+[0.5.1]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.1
+[0.5.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.0
+[0.4.1]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.4.1
+[0.4.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.4.0
+[0.3.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.3.0
+[0.2.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.2.0
+[0.1.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.1.0
