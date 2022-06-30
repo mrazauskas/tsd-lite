@@ -2,31 +2,6 @@
   "name": "tsd-lite",
   "version": "0.5.4",
   "description": "Test your TypeScript types easily",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mrazauskas/tsd-lite.git"
-  },
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
-  "homepage": "https://github.com/mrazauskas/tsd-lite",
-  "bugs": {
-    "url": "https://github.com/mrazauskas/tsd-lite/issues"
-  },
-  "engines": {
-    "node": ">=12"
-  },
-  "scripts": {
-    "build": "tsc",
-    "lint": "yarn lint:cspell && yarn lint:eslint && yarn lint:prettier",
-    "lint:cspell": "cspell --relative --show-context --show-suggestions",
-    "lint:eslint": "eslint . --ext .ts",
-    "lint:prettier": "prettier . --write",
-    "test": "jest"
-  },
-  "files": [
-    "build/**/*"
-  ],
   "keywords": [
     "typescript",
     "tsd",
@@ -37,6 +12,28 @@
     "typings",
     "types"
   ],
+  "homepage": "https://github.com/mrazauskas/tsd-lite/#readme",
+  "bugs": {
+    "url": "https://github.com/mrazauskas/tsd-lite/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "build/**/*"
+  ],
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrazauskas/tsd-lite.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "yarn lint:cspell && yarn lint:eslint && yarn lint:prettier",
+    "lint:cspell": "cspell --relative --show-context --show-suggestions",
+    "lint:eslint": "eslint . --ext .ts",
+    "lint:prettier": "prettier . --write",
+    "test": "jest"
+  },
   "devDependencies": {
     "@babel/core": "7.18.6",
     "@babel/preset-env": "7.18.6",
@@ -55,6 +52,9 @@
   },
   "peerDependencies": {
     "@tsd/typescript": "^3.8.3 || ^4.0.7"
+  },
+  "engines": {
+    "node": ">=12"
   },
   "packageManager": "yarn@3.2.1"
 }
