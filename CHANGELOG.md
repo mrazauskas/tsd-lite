@@ -1,8 +1,12 @@
 # Changelog
 
-## [0.5.5] - 2022-06-30
+## [0.5.6] - 2022-06-30
 
 _Maintenance release: update `CHANGELOG.md`, `README.md` and `package.json`._
+
+## [0.5.5] - 2022-06-30
+
+_Deprecated: missing build files._
 
 ## [0.5.4] - 2022-05-16
 
