@@ -78,6 +78,7 @@ _Deprecated: missing build files._
 
 _First release._
 
+[0.5.6]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.6
 [0.5.5]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.5
 [0.5.4]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.4
 [0.5.3]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.3
