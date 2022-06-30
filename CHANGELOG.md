@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.5] - 2022-06-30
+
+_Maintenance release: update `CHANGELOG.md`, `README.md` and `package.json`._
+
 ## [0.5.4] - 2022-05-16
 
 ### Fixed
@@ -70,6 +74,7 @@
 
 _First release._
 
+[0.5.5]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.5
 [0.5.4]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.4
 [0.5.3]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.3
 [0.5.2]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.2
