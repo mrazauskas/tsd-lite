@@ -45,7 +45,7 @@
     "@typescript-eslint/parser": "5.30.4",
     "babel-jest": "28.1.2",
     "cspell": "6.2.2",
-    "eslint": "8.18.0",
+    "eslint": "8.19.0",
     "eslint-config-prettier": "8.5.0",
     "jest": "28.1.2",
     "prettier": "2.7.1",
