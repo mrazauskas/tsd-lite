@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.0] - 2022-08-26
+
+### Removed
+
+- **Breaking:** Drop support for Node.js v12 ([#110](https://github.com/mrazauskas/tsd-lite/pull/110))
+
 ## [0.5.6] - 2022-06-30
 
 _Maintenance release: update `CHANGELOG.md`, `README.md` and `package.json`._
