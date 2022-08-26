@@ -15,8 +15,8 @@ test("returns `ts.SourceFile` object", () => {
 
   expect(tsdResults[0].file!.text).toEqual(tsdResults[1].file!.text);
   expect(tsdResults[0].file!.text).toMatchInlineSnapshot(`
-    "import { expectError, expectType } from \\"../../\\";
-    import { makeDate } from \\".\\";
+    "import { expectError, expectType } from "../../";
+    import { makeDate } from ".";
 
     expectType<Date>(makeDate(12345678));
     expectType<string>(makeDate(5, 5, 5));
