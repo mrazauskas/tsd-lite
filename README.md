@@ -17,7 +17,7 @@ While `tsd` suites perfectly for JavaScript libraries which declare their types 
 ## Differences from `tsd`
 
 - `tsd-lite` performs only type testing without any additional checks or rules.
-- Includes only type related assertions: `expectAssignable`, `expectDeprecated`, `expectType` and their counterparts. The `printType` helper is removed.
+- Exposes only general type related assertions: `expectAssignable`, `expectDeprecated`, `expectType` and their counterparts. Currently other APIs (like `expectNever`, `expectDocCommentIncludes` and `printType`) are not implement.
 - Comes with no default compiler options.
 - Reads TypeScript compiler options from the nearest `tsconfig.json` for each test file (does not read options from `package.json`).
 - `tsd-lite` is optionally `strict`. You should add `"strict": true` to the nearest `tsconfig.json` (it can be project or test specific) to use strict assertions.
