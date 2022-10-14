@@ -8,7 +8,7 @@
 
 This is a lighter version of [tsd](https://npmjs.com/package/tsd). Slightly reworked codebase allows `tsd-lite` to be a tool which simply tests your types.
 
-**Note:** This library is intended for programmatic use only. For CLI implementation see [`jest-runner-tsd`](https://github.com/jest-community/jest-runner-tsd).
+> **Note** This library is intended for programmatic use only. For CLI implementation see [`jest-runner-tsd`](https://github.com/jest-community/jest-runner-tsd).
 
 ## Motivation
 
