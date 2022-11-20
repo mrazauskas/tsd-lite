@@ -2130,10 +2130,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsd/typescript@npm:4.8.4":
-  version: 4.8.4
-  resolution: "@tsd/typescript@npm:4.8.4"
-  checksum: f820d4e382bbfb59465ff4547366ec1dba10989a115ce8f23e7ecf9db20a26f8ce371bccee0da1eb28ebeac129553ab9b0f3429a31deb4b0126bd41f7a2cb9e3
+"@tsd/typescript@npm:4.9.3":
+  version: 4.9.3
+  resolution: "@tsd/typescript@npm:4.9.3"
+  checksum: 35d4d89583c848b1d8e02ea231d5dc8c63de6c647c2f39d3a8f055fd34b93e827a28a981455b42975f40c0696ea9ea0dc306bd25f852331719f0a92c53b38ff4
   languageName: node
   linkType: hard
 
@@ -5841,7 +5841,7 @@ __metadata:
     "@babel/preset-env": 7.20.2
     "@babel/preset-typescript": 7.18.6
     "@jest/globals": 29.3.1
-    "@tsd/typescript": 4.8.4
+    "@tsd/typescript": 4.9.3
     "@typescript-eslint/eslint-plugin": 5.42.1
     "@typescript-eslint/parser": 5.42.1
     babel-jest: 29.3.1
