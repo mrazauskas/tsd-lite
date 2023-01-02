@@ -1476,9 +1476,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-docker@npm:^1.1.4":
-  version: 1.1.4
-  resolution: "@cspell/dict-docker@npm:1.1.4"
-  checksum: afeb742de5c7688f1a665cf22d0f464d0fa2d42c65e1a3ea3fe91ad8cd4d710637654aff4e9d096ca7f12214f8fafd36f86834e8b0d17d999ec889118a204702
+  version: 1.1.5
+  resolution: "@cspell/dict-docker@npm:1.1.5"
+  checksum: a983e3587cbe6f741dfbf40c509ca06d9489f1fb64f902128f9d738acb747b3a8651a73d256f2a7ef7750a54897eb76776403a47e4b55d84d785c7efa3a90e5e
   languageName: node
   linkType: hard
 
@@ -1525,9 +1525,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-fullstack@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@cspell/dict-fullstack@npm:3.0.0"
-  checksum: 459b43775dfe6d37a0f7466e0fe6b604efc12f3455acc928940997ec85fd6c6506b0f345e007aa6b0c5b6a6bac4a7c5e8319c775db1ed365555ca9ad47590513
+  version: 3.0.1
+  resolution: "@cspell/dict-fullstack@npm:3.0.1"
+  checksum: 05a50b9dc7d0634c78a49cc79cc3955f1d50ac982b0a24cd3af7093ad20c6b87866164a70c1cd3704a3111e260583bab7cfe9fea080f8f52e12c5a09323358ab
   languageName: node
   linkType: hard
 
@@ -2247,9 +2247,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 18.11.17
-  resolution: "@types/node@npm:18.11.17"
-  checksum: 1933afd068d5c75c068c6c4df6d10edb3b0b2bb6503d544e2f0496ac007c90596e6a5e284a8ef032451bc16f871b7e46719d7d2bea60e9b25d13a77d52161cac
+  version: 18.11.18
+  resolution: "@types/node@npm:18.11.18"
+  checksum: 03f17f9480f8d775c8a72da5ea7e9383db5f6d85aa5fefde90dd953a1449bd5e4ffde376f139da4f3744b4c83942166d2a7603969a6f8ea826edfb16e6e3b49d
   languageName: node
   linkType: hard
 
@@ -2282,11 +2282,11 @@ __metadata:
   linkType: hard
 
 "@types/yargs@npm:^17.0.8":
-  version: 17.0.17
-  resolution: "@types/yargs@npm:17.0.17"
+  version: 17.0.18
+  resolution: "@types/yargs@npm:17.0.18"
   dependencies:
     "@types/yargs-parser": "*"
-  checksum: 4f1b5149e794c8960652b4339dc96655e53b48fdbe1b847fcb0db95e72e760724a4c5c616a7fccb3c0ae8beb0e57e06e37391d492e916e3ff179aafeb890e426
+  checksum: 9b6143730e1e12c0b871b5abfb0fcd5409fd498379b7a043b54a1d6168a754cb1058fe4b98251fa6e220a90e5a5e57ce252b8d2e2db026b6e3ea8257d354830b
   languageName: node
   linkType: hard
 
@@ -3001,11 +3001,11 @@ __metadata:
   linkType: hard
 
 "core-js-compat@npm:^3.25.1":
-  version: 3.27.0
-  resolution: "core-js-compat@npm:3.27.0"
+  version: 3.27.1
+  resolution: "core-js-compat@npm:3.27.1"
   dependencies:
     browserslist: ^4.21.4
-  checksum: c9ade04b97cda5931083f7c4e1a4fa8b3ee18836702665231907ed6ac8510f8f6dad3b1208f5416293eaaf3182a35a76875c5a4ecf8e4613c9f73a2652b195bd
+  checksum: e857068f470d67c681564eb87aebf068341db32aa0b9941a5126e588945d909fcd51b1959bb589c855c11056e2ccabe49e96d07007d7d91d56b0d9936fe00d50
   languageName: node
   linkType: hard
 
@@ -3582,11 +3582,11 @@ __metadata:
   linkType: hard
 
 "fastq@npm:^1.6.0":
-  version: 1.14.0
-  resolution: "fastq@npm:1.14.0"
+  version: 1.15.0
+  resolution: "fastq@npm:1.15.0"
   dependencies:
     reusify: ^1.0.4
-  checksum: da2c05ec1446ef77b8ba2b76619c90d483404f5087e71e77469fbee797280a1f4ef26a63be15b2377198bc20d09fdf25c7d6e1e492a1e568a29dfdd9bcb7538c
+  checksum: 0170e6bfcd5d57a70412440b8ef600da6de3b2a6c5966aeaf0a852d542daff506a0ee92d6de7679d1de82e644bce69d7a574a6c93f0b03964b5337eed75ada1a
   languageName: node
   linkType: hard
 
@@ -4707,11 +4707,11 @@ __metadata:
   linkType: hard
 
 "json5@npm:^2.2.1":
-  version: 2.2.2
-  resolution: "json5@npm:2.2.2"
+  version: 2.2.3
+  resolution: "json5@npm:2.2.3"
   bin:
     json5: lib/cli.js
-  checksum: 9a878d66b72157b073cf0017f3e5d93ec209fa5943abcb38d37a54b208917c166bd473c26a24695e67a016ce65759aeb89946592991f8f9174fb96c8e2492683
+  checksum: 2a7436a93393830bce797d4626275152e37e877b265e94ca69c99e3d20c2b9dab021279146a39cdb700e71b2dd32a4cebd1514cd57cee102b1af906ce5040349
   languageName: node
   linkType: hard
 
