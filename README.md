@@ -6,9 +6,9 @@
 [![license](https://img.shields.io/github/license/mrazauskas/tsd-lite)](https://github.com/mrazauskas/tsd-lite/blob/main/LICENSE.md)
 [![node-ci](https://img.shields.io/github/actions/workflow/status/mrazauskas/tsd-lite/node-ci.yml?label=CI)](https://github.com/mrazauskas/tsd-lite/actions/workflows/node-ci.yml)
 
-This is a lighter version of [tsd](https://npmjs.com/package/tsd). Slightly reworked codebase allows `tsd-lite` to be a tool which simply tests your types.
+This is a lighter version of [`tsd`](https://npmjs.com/package/tsd). Slightly reworked codebase allows `tsd-lite` to be a tool which simply tests your types.
 
-> **Note** This library is intended for programmatic use only. For CLI implementation see [`jest-runner-tsd`](https://github.com/jest-community/jest-runner-tsd) or [tsd-lite-cli](https://github.com/asd-xiv/tsd-lite-cli) for a standalone version.
+> **Note** This library is intended for programmatic use only. For an integration with Jest see [`jest-runner-tsd`](https://github.com/jest-community/jest-runner-tsd), if you prefer standalone CLI implementation check [`tsd-lite-cli`](https://github.com/asd-xiv/tsd-lite-cli).
 
 ## Motivation
 
