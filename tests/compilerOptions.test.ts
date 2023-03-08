@@ -14,6 +14,14 @@ test("`compilerOptions.strict` in nearest `tsconfig.json`", () => {
   expect(tsdResults).toHaveLength(0);
 });
 
+test("`compilerOptions.exactOptionalPropertyTypes` in nearest `tsconfig.json`", () => {
+  const { tsdResults } = tsd(
+    fixturePath("compilerOptions-exactOptionalPropertyTypes")
+  );
+
+  expect(tsdResults).toHaveLength(0);
+});
+
 test("when parsing `tsconfig.json` returns errors", () => {
   expect(() => {
     tsd(fixturePath("compilerOptions-errors"));
