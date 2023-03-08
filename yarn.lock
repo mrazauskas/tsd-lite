@@ -5897,7 +5897,7 @@ __metadata:
     prettier: 2.8.4
     typescript: 4.9.5
   peerDependencies:
-    "@tsd/typescript": ^3.8.3 || ^4.0.7
+    "@tsd/typescript": 4.x || 5.x
   languageName: unknown
   linkType: soft
 
