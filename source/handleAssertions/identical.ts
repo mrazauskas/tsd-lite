@@ -20,32 +20,7 @@ export function expectType(
     const expectedType = checker.getTypeFromTypeNode(node.typeArguments[0]);
     const argumentType = checker.getTypeAtLocation(node.arguments[0]);
 
-    if (!checker.isTypeAssignableTo(argumentType, expectedType)) {
-      tsdResults.push(
-        toAssertionResult(
-          node,
-          `Argument of type '${checker.typeToString(
-            argumentType
-          )}' is not assignable to parameter of type '${checker.typeToString(
-            expectedType
-          )}'.`
-        )
-      );
-      continue;
-    }
-
-    if (!checker.isTypeAssignableTo(expectedType, argumentType)) {
-      tsdResults.push(
-        toAssertionResult(
-          node,
-          `Parameter type '${checker.typeToString(
-            expectedType
-          )}' is declared too wide for argument type '${checker.typeToString(
-            argumentType
-          )}'.`
-        )
-      );
-    } else if (!checker.isTypeIdenticalTo(expectedType, argumentType)) {
+    if (!checker.isTypeIdenticalTo(expectedType, argumentType)) {
       tsdResults.push(
         toAssertionResult(
           node,
