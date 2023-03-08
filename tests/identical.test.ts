@@ -14,7 +14,7 @@ test("expectType", () => {
     },
     {
       message:
-        "Parameter type 'string | number' is declared too wide for argument type 'string'.",
+        "Parameter type 'string | number' is not identical to argument type 'string'.",
       line: 10,
       character: 1,
     },
@@ -26,19 +26,19 @@ test("expectType", () => {
     },
     {
       message:
-        "Parameter type 'string' is declared too wide for argument type 'never'.",
+        "Parameter type 'string' is not identical to argument type 'never'.",
       line: 14,
       character: 1,
     },
     {
       message:
-        "Parameter type 'any' is declared too wide for argument type 'never'.",
+        "Parameter type 'any' is not identical to argument type 'never'.",
       line: 15,
       character: 1,
     },
     {
       message:
-        "Argument of type '{ a: { b: number; }; }' is not assignable to parameter of type 'T2'.",
+        "Parameter type 'T2' is not identical to argument type '{ a: { b: number; }; }'.",
       line: 18,
       character: 1,
     },
