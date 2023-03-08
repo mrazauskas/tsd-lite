@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.7.0] - 2023-03-08
+
+### Removed
+
+- **Breaking:** Drop support for `@tsd/typescript` v3.x and add support for v5.x ([#252](https://github.com/mrazauskas/tsd-lite/pull/252))
+- **Breaking:** Drop support for Node.js v12 (finally) ([#250](https://github.com/mrazauskas/tsd-lite/pull/250))
+
+### Fixed
+
+- Add `ts2375`, `ts2379` and `ts2412` to the list of expected errors ([#249](https://github.com/mrazauskas/tsd-lite/pull/249))
+
 ## [0.6.0] - 2022-08-26
 
 ### Removed
@@ -84,6 +95,8 @@ _Deprecated: missing build files._
 
 _First release._
 
+[0.7.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.7.0
+[0.6.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.6.0
 [0.5.6]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.6
 [0.5.5]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.5
 [0.5.4]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.4
