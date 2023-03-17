@@ -17,6 +17,10 @@
   ],
   "rules": {
     "@typescript-eslint/array-type": ["error", { "default": "generic" }],
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      { "fixStyle": "inline-type-imports" }
+    ],
     "@typescript-eslint/explicit-module-boundary-types": "error"
   }
 }

@@ -1,7 +1,7 @@
 import * as ts from "@tsd/typescript";
 import { handleAssertions, toAssertionResult } from "./handleAssertions";
 import {
-  Location,
+  type Location,
   extractAssertions,
   parseErrorAssertionToLocation,
 } from "./parser";

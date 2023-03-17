@@ -1,5 +1,5 @@
 import { expectDeprecated } from "../../";
-import concat, { Unicorn, Options } from ".";
+import concat, { Unicorn, type Options } from ".";
 
 // Methods
 expectDeprecated(concat("foo", "bar"));

@@ -9,8 +9,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noEmitOnError": true,
-    "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "error"
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["./source/**/*"]
 }

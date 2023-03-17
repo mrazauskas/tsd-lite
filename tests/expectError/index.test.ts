@@ -4,10 +4,10 @@ import {
   atLeastOne,
   foo,
   getFoo,
-  HasKey,
+  type HasKey,
   hasProperty,
   MyClass,
-  Options,
+  type Options,
   triggerSuggestion,
 } from ".";
 import { Foo } from "./classes";

@@ -1,5 +1,5 @@
 import { expectError } from "../../";
-import { OptionalProperty, setWithOptionalProperty } from ".";
+import { type OptionalProperty, setWithOptionalProperty } from ".";
 
 expectError(() => {
   const obj: OptionalProperty = {
