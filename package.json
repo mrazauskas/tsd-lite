@@ -36,7 +36,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/core": "7.21.5",
+    "@babel/core": "7.21.8",
     "@babel/preset-env": "7.21.5",
     "@babel/preset-typescript": "7.21.5",
     "@jest/globals": "29.5.0",
