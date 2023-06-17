@@ -31,4 +31,4 @@ export declare function expectNotAssignable<T>(value: unknown): void;
  *
  * @param value - Value that should be checked.
  */
-export declare function expectError<T = unknown>(value: T): void;
+export declare function expectError(value: unknown): void;
