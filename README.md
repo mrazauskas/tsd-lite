@@ -20,7 +20,7 @@ While `tsd` suites perfectly for JavaScript libraries which declare their types 
 - Reads TypeScript compiler options from the nearest `tsconfig.json` for each test file (does not read options from `package.json`).
 - `tsd-lite` is optionally `strict`. You should add `"strict": true` to the nearest `tsconfig.json` (it can be project or test specific) to use strict assertions.
 - [`@tsd/typescript`](https://npmjs.com/package/@tsd/typescript) package is moved to peer dependencies.
-- `tsd-lite` allows only programmatic [usage](#usage).
+- `tsd-lite` allows only programmatic [usage](#api-reference).
 
 ## Install
 
