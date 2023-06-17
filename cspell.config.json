@@ -2,5 +2,5 @@
   "files": ["source/**/*", "tests/**/*", "*.md"],
   "language": "en-US",
   "useGitignore": true,
-  "words": ["Heera", "Verschueren"]
+  "words": ["Heera", "Verschueren", "keyof"]
 }
