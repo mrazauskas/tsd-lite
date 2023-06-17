@@ -1,11 +1,7 @@
 {
+  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "strict": true,
-    "noImplicitOverride": true,
-    "skipLibCheck": true
+    "noImplicitOverride": true
   },
   "include": ["**/*"]
 }
