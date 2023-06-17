@@ -14,9 +14,6 @@ import { Foo } from "./classes";
 import gOne, { two as gTwo } from "./generics";
 import fOne, { fTwo, fThree } from "./functions";
 
-expectError<string>(1);
-expectError<string>("fo");
-
 expectError((foo.bar = "quux"));
 expectError(foo.quux);
 

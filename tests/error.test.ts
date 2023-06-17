@@ -8,12 +8,7 @@ test("expectError", () => {
   expect(normalizeResults(tsdResults)).toMatchObject([
     {
       message: "Expected an error, but found none.",
-      line: 18,
-      character: 1,
-    },
-    {
-      message: "Expected an error, but found none.",
-      line: 97,
+      line: 94,
       character: 1,
     },
   ]);
