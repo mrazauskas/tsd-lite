@@ -55,7 +55,7 @@
     "@tsd/typescript": "4.x || 5.x"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "packageManager": "yarn@3.6.0"
 }
