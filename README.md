@@ -20,7 +20,7 @@ While `tsd` suites perfectly for JavaScript libraries which declare their types 
 - Reads TypeScript compiler options from the nearest `tsconfig.json` for each test file (does not read options from `package.json`).
 - `tsd-lite` is optionally `strict`. You should add `"strict": true` to the nearest `tsconfig.json` (it can be project or test specific) to use strict assertions.
 - [`@tsd/typescript`](https://npmjs.com/package/@tsd/typescript) package is moved to peer dependencies.
-- `tsd-lite` allows only programmatic [usage](#api-reference).
+- `tsd-lite` allows only programmatic usage. For an integration with Jest see [`jest-runner-tsd`](https://github.com/jest-community/jest-runner-tsd), if you prefer standalone CLI implementation check [`tsd-lite-cli`](https://github.com/asd-xiv/tsd-lite-cli).
 
 ## Install
 
@@ -31,8 +31,6 @@ npm install -D tsd-lite @tsd/typescript
 ```
 
 Remember to install `@tsd/typescript`. It is a required peer dependency.
-
-> **Note** This library is intended for programmatic use only. For an integration with Jest see [`jest-runner-tsd`](https://github.com/jest-community/jest-runner-tsd), if you prefer standalone CLI implementation check [`tsd-lite-cli`](https://github.com/asd-xiv/tsd-lite-cli).
 
 ## Assertions
 
