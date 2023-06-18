@@ -23,7 +23,7 @@ export function resolveCompilerOptions(
     );
 
   if (configDiagnostics.length > 0) {
-    throw new TsdError(configDiagnostics[0], "ConfigError");
+    throw new TsdError("ConfigError", configDiagnostics[0]);
   }
 
   return compilerOptions;

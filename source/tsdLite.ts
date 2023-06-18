@@ -31,14 +31,14 @@ export function tsdLite(testFilePath: string): {
   const syntacticDiagnostics = program.getSyntacticDiagnostics();
 
   if (syntacticDiagnostics.length !== 0) {
-    throw new TsdError(syntacticDiagnostics[0], "SyntaxError");
+    throw new TsdError("SyntaxError", syntacticDiagnostics[0]);
   }
 
   const semanticDiagnostics = program.getSemanticDiagnostics();
 
-  const typeChecker = program.getTypeChecker();
   const { assertions, assertionsCount } = extractAssertions(program);
 
+  const typeChecker = program.getTypeChecker();
   const assertionResults = handleAssertions(typeChecker, assertions);
 
   const expectedErrors = parseErrorAssertionToLocation(assertions);

@@ -1,27 +1,23 @@
 import * as ts from "@tsd/typescript";
-import { isDiagnosticWithLocation } from "./isDiagnosticWithLocation";
 
-function formatMassageAndLocation(diagnostic: ts.Diagnostic): {
-  message: string;
-  location?: string;
-} {
-  const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n");
-
-  if (isDiagnosticWithLocation(diagnostic)) {
-    const { file, start } = diagnostic;
-
-    const { line, character } = file.getLineAndCharacterOfPosition(start);
-    const location = `at ${file.fileName}:${line + 1}:${character + 1}`;
-
-    return { message, location };
-  }
-
-  return { message };
+export interface TsdErrorOptions {
+  file?: ts.SourceFile | undefined;
+  messageText: string | ts.DiagnosticMessageChain;
+  start?: number | undefined;
 }
 
 export class TsdError extends Error {
-  constructor(diagnostic: ts.Diagnostic, name: string) {
-    const { message, location } = formatMassageAndLocation(diagnostic);
+  constructor(name: string, options: TsdErrorOptions) {
+    let location: string | undefined;
+
+    if (options.file != null && options.start != null) {
+      const { line, character } = options.file.getLineAndCharacterOfPosition(
+        options.start
+      );
+      location = `at ${options.file.fileName}:${line + 1}:${character + 1}`;
+    }
+
+    const message = ts.flattenDiagnosticMessageText(options.messageText, "\n");
 
     super(message);
 
