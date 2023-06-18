@@ -9,6 +9,18 @@
   "plugins": ["@typescript-eslint"],
   "overrides": [
     {
+      "files": ["examples/__typetests__/JsonObject.test.ts"],
+      "rules": {
+        "@typescript-eslint/no-empty-function": ["off"]
+      }
+    },
+    {
+      "files": ["examples/MethodLikeKeys.ts"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": ["off"]
+      }
+    },
+    {
       "files": ["source/assertions.ts", "**/*.test.ts"],
       "rules": {
         "@typescript-eslint/no-unused-vars": ["off"]
