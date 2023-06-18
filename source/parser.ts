@@ -1,5 +1,6 @@
 import * as ts from "@tsd/typescript";
 import { Assertion } from "./handleAssertions";
+import { TsdError } from "./utils";
 
 export type Location = {
   fileName: string;
@@ -15,6 +16,20 @@ export function extractAssertions(program: ts.Program): {
   const assertions = new Map<Assertion, Set<ts.CallExpression>>();
 
   function visit(node: ts.Node) {
+    if (
+      ts.isImportDeclaration(node) &&
+      /^("|')tsd("|')$/.test(node.moduleSpecifier.getText())
+    ) {
+      throw new TsdError("Usage Error", {
+        messageText:
+          "The assertions must be imported from 'tsd-lite' package, please refactor the type test. " +
+          "This is a precaution to prevent bugs and errors caused by differences between the testing APIs. " +
+          "You should also consider uninstalling 'tsd' to reduce the number of redundant dependencies.",
+        file: node.moduleSpecifier.getSourceFile(),
+        start: node.moduleSpecifier.getStart(),
+      });
+    }
+
     if (ts.isCallExpression(node)) {
       const identifier = node.expression.getText();
 
