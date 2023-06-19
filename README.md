@@ -54,7 +54,7 @@ export interface JsonObject {
 ```
 
 ```ts
-// JsonObject.test.ts
+// __typetests__/JsonObject.test.ts
 import { expectAssignable, expectNotAssignable } from "tsd-lite";
 import type { JsonObject } from "../JsonObject.js";
 
@@ -89,7 +89,7 @@ export type MethodLikeKeys<T> = keyof {
 ```
 
 ```ts
-// MethodLikeKeys.test.ts
+// __typetests__/MethodLikeKeys.test.ts
 import { expectType, expectNotType } from "tsd-lite";
 import type { MethodLikeKeys } from "../MethodLikeKeys.js";
 
@@ -114,7 +114,7 @@ expectNotType<"methodA" | "methodB" | "propertyA">(interfaceMethods);
 Asserts the `expression` has a type error.
 
 ```ts
-// require-resolve.test.ts
+// __typetests__/require-resolve.test.ts
 import { expectError, expectType } from "tsd-lite";
 
 // Expected 1-2 arguments
