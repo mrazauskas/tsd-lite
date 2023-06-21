@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.8.0] - 2023-05-21
+
+### Removed
+
+- **Breaking:** Remove the confusing `expectError()` type argument ([#322](https://github.com/mrazauskas/tsd-lite/pull/322))
+- **Breaking:** Remove the `expectDeprecated()` assertion ([#320](https://github.com/mrazauskas/tsd-lite/pull/320))
+- **Breaking:** Drop support for Node.js v14 and v19 ([#319](https://github.com/mrazauskas/tsd-lite/pull/319))
+
+### Fixed
+
+- Error on imports from `'tsd'` package ([#327](https://github.com/mrazauskas/tsd-lite/pull/327))
+
 ## [0.7.0] - 2023-03-08
 
 ### Removed
@@ -95,6 +107,7 @@ _Deprecated: missing build files._
 
 _First release._
 
+[0.8.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.8.0
 [0.7.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.7.0
 [0.6.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.6.0
 [0.5.6]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.5.6
