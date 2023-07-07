@@ -1,4 +1,1 @@
-.yarn
-build
-coverage
 tests/syntax-errors
