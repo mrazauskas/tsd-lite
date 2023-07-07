@@ -2131,7 +2131,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/transform@npm:^29.5.0, @jest/transform@npm:^29.6.0":
+"@jest/transform@npm:^29.6.0":
   version: 29.6.0
   resolution: "@jest/transform@npm:29.6.0"
   dependencies:
@@ -2741,24 +2741,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-jest@npm:29.5.0":
-  version: 29.5.0
-  resolution: "babel-jest@npm:29.5.0"
-  dependencies:
-    "@jest/transform": ^29.5.0
-    "@types/babel__core": ^7.1.14
-    babel-plugin-istanbul: ^6.1.1
-    babel-preset-jest: ^29.5.0
-    chalk: ^4.0.0
-    graceful-fs: ^4.2.9
-    slash: ^3.0.0
-  peerDependencies:
-    "@babel/core": ^7.8.0
-  checksum: eafb6d37deb71f0c80bf3c80215aa46732153e5e8bcd73f6ff47d92e5c0c98c8f7f75995d0efec6289c371edad3693cd8fa2367b0661c4deb71a3a7117267ede
-  languageName: node
-  linkType: hard
-
-"babel-jest@npm:^29.6.0":
+"babel-jest@npm:29.6.0, babel-jest@npm:^29.6.0":
   version: 29.6.0
   resolution: "babel-jest@npm:29.6.0"
   dependencies:
@@ -6100,7 +6083,7 @@ __metadata:
     "@types/node": 20.3.3
     "@typescript-eslint/eslint-plugin": 5.61.0
     "@typescript-eslint/parser": 5.61.0
-    babel-jest: 29.5.0
+    babel-jest: 29.6.0
     cspell: 6.31.1
     eslint: 8.44.0
     eslint-config-prettier: 8.8.0
