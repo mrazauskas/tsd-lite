@@ -3,7 +3,7 @@ import * as ts from "@tsd/typescript";
 import { TsdError } from "./TsdError";
 
 export function resolveCompilerOptions(
-  searchPath: string
+  searchPath: string,
 ): ts.CompilerOptions | undefined {
   const configPath = ts.findConfigFile(searchPath, ts.sys.fileExists);
 
@@ -19,7 +19,7 @@ export function resolveCompilerOptions(
       ts.sys,
       dirname(configPath),
       undefined,
-      configPath
+      configPath,
     );
 
   if (configDiagnostics.length > 0) {

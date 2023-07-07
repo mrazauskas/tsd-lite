@@ -132,7 +132,7 @@ The default export of the library is a function which takes fully resolved path 
 import tsdLite from "tsd-lite";
 
 const { assertionsCount, tsdResults } = tsdLite(
-  "/absolute/path/to/testFile.test.ts"
+  "/absolute/path/to/testFile.test.ts",
 );
 ```
 

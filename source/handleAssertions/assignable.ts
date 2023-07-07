@@ -4,7 +4,7 @@ import { toAssertionResult } from "./";
 
 export function expectNotAssignable(
   checker: ts.TypeChecker,
-  nodes: Set<ts.CallExpression>
+  nodes: Set<ts.CallExpression>,
 ): Array<AssertionResult> {
   const tsdResults: Array<AssertionResult> = [];
 
@@ -25,11 +25,11 @@ export function expectNotAssignable(
         toAssertionResult(
           node,
           `Argument of type '${checker.typeToString(
-            argumentType
+            argumentType,
           )}' is assignable to parameter of type '${checker.typeToString(
-            expectedType
-          )}'.`
-        )
+            expectedType,
+          )}'.`,
+        ),
       );
     }
   }
@@ -39,7 +39,7 @@ export function expectNotAssignable(
 
 export function expectAssignable(
   checker: ts.TypeChecker,
-  nodes: Set<ts.CallExpression>
+  nodes: Set<ts.CallExpression>,
 ): Array<AssertionResult> {
   const tsdResults: Array<AssertionResult> = [];
 
@@ -60,11 +60,11 @@ export function expectAssignable(
         toAssertionResult(
           node,
           `Argument of type '${checker.typeToString(
-            argumentType
+            argumentType,
           )}' is not assignable to parameter of type '${checker.typeToString(
-            expectedType
-          )}'.`
-        )
+            expectedType,
+          )}'.`,
+        ),
       );
     }
   }

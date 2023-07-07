@@ -14,7 +14,7 @@ const topLevelAwaitErrors = [1308, 1378];
 
 export function silenceError(
   diagnostic: ts.DiagnosticWithLocation,
-  expectedErrors: Map<Location, ts.Node>
+  expectedErrors: Map<Location, ts.Node>,
 ): "ignore" | "preserve" | Location {
   if (topLevelAwaitErrors.includes(diagnostic.code)) {
     return "ignore";

@@ -12,7 +12,7 @@ export class TsdError extends Error {
 
     if (options.file != null && options.start != null) {
       const { line, character } = options.file.getLineAndCharacterOfPosition(
-        options.start
+        options.start,
       );
       location = `at ${options.file.fileName}:${line + 1}:${character + 1}`;
     }

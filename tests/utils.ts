@@ -11,7 +11,7 @@ type TsdResultWithLocation = TsdResult & {
 };
 
 const isTsdResultWithLocation = (
-  result: TsdResult
+  result: TsdResult,
 ): result is TsdResultWithLocation => result.file !== undefined;
 
 type NormalizedResult = {
@@ -22,12 +22,12 @@ type NormalizedResult = {
 };
 
 export function normalizeResults(
-  results: Array<TsdResult> = []
+  results: Array<TsdResult> = [],
 ): Array<NormalizedResult> {
   return results.map((result) => {
     if (isTsdResultWithLocation(result)) {
       const { line, character } = result.file.getLineAndCharacterOfPosition(
-        result.start
+        result.start,
       );
       return {
         message: ts.flattenDiagnosticMessageText(result.messageText, "\n"),

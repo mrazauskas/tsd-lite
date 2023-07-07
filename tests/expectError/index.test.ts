@@ -61,7 +61,7 @@ expectError(
     bar(): void {
       return;
     }
-  }
+  },
 );
 
 expectError(
@@ -69,7 +69,7 @@ expectError(
     override foo(): void {
       return;
     }
-  }
+  },
 );
 
 // generics
