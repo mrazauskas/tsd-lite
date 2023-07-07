@@ -1,8 +1,8 @@
 {
-  "enabled": false,
   "extends": [
     "config:base",
     "schedule:daily",
+    ":automergeBranch",
     ":automergeMinor",
     ":maintainLockFilesWeekly",
     ":semanticCommits"
