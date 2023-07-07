@@ -4,7 +4,7 @@ import { toAssertionResult } from "./";
 
 export function expectType(
   checker: ts.TypeChecker,
-  nodes: Set<ts.CallExpression>
+  nodes: Set<ts.CallExpression>,
 ): Array<AssertionResult> {
   const tsdResults: Array<AssertionResult> = [];
 
@@ -25,11 +25,11 @@ export function expectType(
         toAssertionResult(
           node,
           `Parameter type '${checker.typeToString(
-            expectedType
+            expectedType,
           )}' is not identical to argument type '${checker.typeToString(
-            argumentType
-          )}'.`
-        )
+            argumentType,
+          )}'.`,
+        ),
       );
     }
   }
@@ -39,7 +39,7 @@ export function expectType(
 
 export function expectNotType(
   checker: ts.TypeChecker,
-  nodes: Set<ts.CallExpression>
+  nodes: Set<ts.CallExpression>,
 ): Array<AssertionResult> {
   const tsdResults: Array<AssertionResult> = [];
 
@@ -60,11 +60,11 @@ export function expectNotType(
         toAssertionResult(
           node,
           `Parameter type '${checker.typeToString(
-            expectedType
+            expectedType,
           )}' is identical to argument type '${checker.typeToString(
-            argumentType
-          )}'.`
-        )
+            argumentType,
+          )}'.`,
+        ),
       );
     }
   }

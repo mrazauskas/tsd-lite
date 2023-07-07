@@ -13,7 +13,7 @@ export enum Assertion {
 
 export type Handler = (
   typeChecker: ts.TypeChecker,
-  nodes: Set<ts.CallExpression>
+  nodes: Set<ts.CallExpression>,
 ) => Array<AssertionResult>;
 
 const assertionHandlers = new Map<Assertion, Handler>([
@@ -25,7 +25,7 @@ const assertionHandlers = new Map<Assertion, Handler>([
 
 export function handleAssertions(
   typeChecker: ts.TypeChecker,
-  assertions: Map<Assertion, Set<ts.CallExpression>>
+  assertions: Map<Assertion, Set<ts.CallExpression>>,
 ): Array<AssertionResult> {
   const tsdResults: Array<AssertionResult> = [];
 
@@ -44,7 +44,7 @@ export function handleAssertions(
 
 export function toAssertionResult(
   node: ts.Node,
-  messageText: string | ts.DiagnosticMessageChain
+  messageText: string | ts.DiagnosticMessageChain,
 ): AssertionResult {
   return {
     messageText,

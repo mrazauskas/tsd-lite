@@ -62,7 +62,7 @@ export function extractAssertions(program: ts.Program): {
 }
 
 export function parseErrorAssertionToLocation(
-  assertions: Map<Assertion, Set<ts.CallExpression>>
+  assertions: Map<Assertion, Set<ts.CallExpression>>,
 ): Map<Location, ts.Node> {
   const nodes = assertions.get(Assertion.EXPECT_ERROR);
 

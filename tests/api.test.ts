@@ -10,7 +10,7 @@ test("returns `ts.SourceFile` object", () => {
 
   expect(tsdResults).toHaveLength(2);
   expect(normalize(tsdResults[0].file!.fileName)).toEqual(
-    resolve("tests", "failing", "index.test.ts")
+    resolve("tests", "failing", "index.test.ts"),
   );
 
   expect(tsdResults[0].file!.text).toEqual(tsdResults[1].file!.text);

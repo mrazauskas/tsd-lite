@@ -14,7 +14,7 @@ expectError(
   setWithOptionalProperty({
     requiredProp: "required",
     optionalProp: undefined,
-  })
+  }),
 );
 
 const obj: OptionalProperty = { requiredProp: "required" };

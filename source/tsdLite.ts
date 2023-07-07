@@ -65,7 +65,7 @@ export function tsdLite(testFilePath: string): {
 
   for (const [, node] of expectedErrors) {
     assertionResults.push(
-      toAssertionResult(node, "Expected an error, but found none.")
+      toAssertionResult(node, "Expected an error, but found none."),
     );
   }
 
