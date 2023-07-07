@@ -1981,7 +1981,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/environment@npm:^29.5.0, @jest/environment@npm:^29.6.0":
+"@jest/environment@npm:^29.6.0":
   version: 29.6.0
   resolution: "@jest/environment@npm:29.6.0"
   dependencies:
@@ -2002,7 +2002,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/expect@npm:^29.5.0, @jest/expect@npm:^29.6.0":
+"@jest/expect@npm:^29.6.0":
   version: 29.6.0
   resolution: "@jest/expect@npm:29.6.0"
   dependencies:
@@ -2026,19 +2026,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/globals@npm:29.5.0":
-  version: 29.5.0
-  resolution: "@jest/globals@npm:29.5.0"
-  dependencies:
-    "@jest/environment": ^29.5.0
-    "@jest/expect": ^29.5.0
-    "@jest/types": ^29.5.0
-    jest-mock: ^29.5.0
-  checksum: b309ab8f21b571a7c672608682e84bbdd3d2b554ddf81e4e32617fec0a69094a290ab42e3c8b2c66ba891882bfb1b8b2736720ea1285b3ad646d55c2abefedd9
-  languageName: node
-  linkType: hard
-
-"@jest/globals@npm:^29.6.0":
+"@jest/globals@npm:29.6.0, @jest/globals@npm:^29.6.0":
   version: 29.6.0
   resolution: "@jest/globals@npm:29.6.0"
   dependencies:
@@ -2154,7 +2142,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/types@npm:^29.5.0, @jest/types@npm:^29.6.0":
+"@jest/types@npm:^29.6.0":
   version: 29.6.0
   resolution: "@jest/types@npm:29.6.0"
   dependencies:
@@ -4612,7 +4600,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-mock@npm:^29.5.0, jest-mock@npm:^29.6.0":
+"jest-mock@npm:^29.6.0":
   version: 29.6.0
   resolution: "jest-mock@npm:29.6.0"
   dependencies:
@@ -6094,7 +6082,7 @@ __metadata:
     "@babel/core": 7.22.5
     "@babel/preset-env": 7.22.6
     "@babel/preset-typescript": 7.22.5
-    "@jest/globals": 29.5.0
+    "@jest/globals": 29.6.0
     "@tsconfig/node16": 16.1.0
     "@tsd/typescript": 5.1.6
     "@types/node": 20.3.3
