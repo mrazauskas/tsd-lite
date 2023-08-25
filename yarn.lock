@@ -2566,10 +2566,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.5.4":
-  version: 20.5.4
-  resolution: "@types/node@npm:20.5.4"
-  checksum: 18de76c990e1c298183661cfc7cf16c9384531538c8090cc27bc3cab801e7c46b9f6943591ab0433955dd57961601684cc0fb19ba2deee9609e137c91afd2e25
+"@types/node@npm:20.5.6":
+  version: 20.5.6
+  resolution: "@types/node@npm:20.5.6"
+  checksum: d2ce44f1cfa3fd00fe7426f7cf9a46d680cd57802b874ed5618e7d9101a9c6b8de37f08c0e7185ee06fb363ad492549c3ea69665c7e8e31c7813210ed8e89005
   languageName: node
   linkType: hard
 
@@ -6412,7 +6412,7 @@ __metadata:
     "@jest/globals": 29.6.4
     "@tsconfig/node16": 16.1.1
     "@tsd/typescript": 5.1.6
-    "@types/node": 20.5.4
+    "@types/node": 20.5.6
     "@typescript-eslint/eslint-plugin": 6.4.1
     "@typescript-eslint/parser": 6.4.1
     babel-jest: 29.6.4
