@@ -1499,9 +1499,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-companies@npm:^3.0.26":
-  version: 3.0.26
-  resolution: "@cspell/dict-companies@npm:3.0.26"
-  checksum: ae6f4e7c39b8fa7644d1e4d25c453b8edf93b4d518991f36e5d86fceab9e7795ec0912a8170a8e5c1c650f876d5d95b096f4369d47b725fd54f2666063c93beb
+  version: 3.0.27
+  resolution: "@cspell/dict-companies@npm:3.0.27"
+  checksum: 960a2c6514389b2a540556d30a21c34bd1495ed5598f8a37a3afc2320dd93ed57df4d5d3c3c63d54024f5fc7d31cc228ea76aa89490a91812d7b691088eb78c1
   languageName: node
   linkType: hard
 
@@ -1597,9 +1597,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-filetypes@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@cspell/dict-filetypes@npm:3.0.1"
-  checksum: 43ad696dac5feaee290120216153a25f454302bda5834ce5e86dbab5fca73266a35c7fc00466120ae3b696ec1fa94b4f2b36e036dd07f05d5a4a770db7eb5d0a
+  version: 3.0.2
+  resolution: "@cspell/dict-filetypes@npm:3.0.2"
+  checksum: 929b5d9d547edfffb5ab507b5fe09afe3d7802db6f30484cff475ce3b6d3ddedca060a4d8fb69c32dede0b3312d6b773a136065457569179cf3c6b72bff0a446
   languageName: node
   linkType: hard
 
@@ -1737,11 +1737,11 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-python@npm:^4.1.9":
-  version: 4.1.9
-  resolution: "@cspell/dict-python@npm:4.1.9"
+  version: 4.1.10
+  resolution: "@cspell/dict-python@npm:4.1.10"
   dependencies:
     "@cspell/dict-data-science": ^1.0.11
-  checksum: 9424c6da9ffd5f58ef393af133cea0c57f58d2b2fc8bf575360cba508ed2e159e5df3b973f2a70b4548a5820be3c07a716c784c0d6df62fc921db4abb91f450a
+  checksum: 67e210815e1ccdfda6c005e82174b93ee39b94c166e5e8971e2900850166c2bfe583edc01c263862fff3edcffd9324bc83a6260075ac7cfce2f366b94eab7154
   languageName: node
   linkType: hard
 
@@ -2381,16 +2381,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 20.8.9
-  resolution: "@types/node@npm:20.8.9"
-  dependencies:
-    undici-types: ~5.26.4
-  checksum: 0c05f3502a9507ff27e91dd6fd574fa6f391b3fafedcfe8e0c8d33351fb22d02c0121f854e5b6b3ecb9a8a468407ddf6e7ac0029fb236d4c7e1361ffc758a01f
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:20.8.10":
+"@types/node@npm:*, @types/node@npm:20.8.10":
   version: 20.8.10
   resolution: "@types/node@npm:20.8.10"
   dependencies:
@@ -2928,9 +2919,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001541":
-  version: 1.0.30001558
-  resolution: "caniuse-lite@npm:1.0.30001558"
-  checksum: 1bd6ef855a0de6ff052234912910d699e58edabcf2f34848b7df1f97ee40b059bbdf1901ac919d19360a0603e32e2ac30ae89670ceca8f118e750be3280ef5b1
+  version: 1.0.30001561
+  resolution: "caniuse-lite@npm:1.0.30001561"
+  checksum: 949829fe037e23346595614e01d362130245920503a12677f2506ce68e1240360113d6383febed41e8aa38cd0f5fd9c69c21b0af65a71c0246d560db489f1373
   languageName: node
   linkType: hard
 
@@ -3121,11 +3112,11 @@ __metadata:
   linkType: hard
 
 "core-js-compat@npm:^3.31.0, core-js-compat@npm:^3.33.1":
-  version: 3.33.1
-  resolution: "core-js-compat@npm:3.33.1"
+  version: 3.33.2
+  resolution: "core-js-compat@npm:3.33.2"
   dependencies:
     browserslist: ^4.22.1
-  checksum: 39329daf135a3d8fdd86cf61d4fb2e868d1d9a60308cd98fccd0296d5e40b040c107e9aaa8a87163d8c058c69fbd441bc0a7a035aebd2d0978275bd0b257df15
+  checksum: 4206d3ff282a9188399e9003301fa4b96844152afcea7b9c9accc653542f40f581f77bf079b8be67f614e305da1f29e868a49ceebb6dbe3f5fb4a28bd2dbf431
   languageName: node
   linkType: hard
 
@@ -3398,9 +3389,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.535":
-  version: 1.4.569
-  resolution: "electron-to-chromium@npm:1.4.569"
-  checksum: 1ed9b1e9afce89280ad263372ced341e984ad799cff25bfb52a969c635c40016618b3d9787bc59aefce097028e2ea8749294aed28ca80fcaee3fedc4399c748b
+  version: 1.4.576
+  resolution: "electron-to-chromium@npm:1.4.576"
+  checksum: cf26065d95b0ecdd01f6daeec15b1e684a3b39680ae9f6d5d33c1391a6c1aa5ea2cb81cce699878e4fbb942328fc1076726f2d9ab1e8df9fbe02c84f1a5bbf1f
   languageName: node
   linkType: hard
 
@@ -4112,9 +4103,9 @@ __metadata:
   linkType: hard
 
 "import-meta-resolve@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "import-meta-resolve@npm:3.0.0"
-  checksum: d0428cd14915ee0093b995dc5bbc70bd01cc668822f52b62af98f728e5d6a08724f07e6aa9f5fae002d5eecbf6ec2cdcd379bf4869dd1b353bd080693f91e394
+  version: 3.1.1
+  resolution: "import-meta-resolve@npm:3.1.1"
+  checksum: 24e703e8107699e22fdbea8712e1fa3ef6c379a5e999e6d62280754d302ec71bf41302e791886706a015cc20eb2d292c7187d16efb064e25b617808e3f65e1d3
   languageName: node
   linkType: hard
 
@@ -5188,8 +5179,8 @@ __metadata:
   linkType: hard
 
 "node-gyp@npm:latest":
-  version: 10.0.0
-  resolution: "node-gyp@npm:10.0.0"
+  version: 10.0.1
+  resolution: "node-gyp@npm:10.0.1"
   dependencies:
     env-paths: ^2.2.0
     exponential-backoff: ^3.1.1
@@ -5203,7 +5194,7 @@ __metadata:
     which: ^4.0.0
   bin:
     node-gyp: bin/node-gyp.js
-  checksum: 65fa5d9f8ef03fa22c5f2d34da23435a63d3743400ca941a4394eb943cf340796456697a7797af1451606dbbeecb663be9328995dadc0b99e58dd583dc3a7a0f
+  checksum: 60a74e66d364903ce02049966303a57f898521d139860ac82744a5fdd9f7b7b3b61f75f284f3bfe6e6add3b8f1871ce305a1d41f775c7482de837b50c792223f
   languageName: node
   linkType: hard
 
@@ -5517,9 +5508,9 @@ __metadata:
   linkType: hard
 
 "punycode@npm:^2.1.0":
-  version: 2.3.0
-  resolution: "punycode@npm:2.3.0"
-  checksum: 39f760e09a2a3bbfe8f5287cf733ecdad69d6af2fe6f97ca95f24b8921858b91e9ea3c9eeec6e08cede96181b3bb33f95c6ffd8c77e63986508aa2e8159fa200
+  version: 2.3.1
+  resolution: "punycode@npm:2.3.1"
+  checksum: bb0a0ceedca4c3c57a9b981b90601579058903c62be23c5e8e843d2c2d4148a3ecf029d5133486fb0e1822b098ba8bba09e89d6b21742d02fa26bda6441a6fb2
   languageName: node
   linkType: hard
 
