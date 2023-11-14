@@ -1,9 +1,0 @@
-{
-  "extends": [
-    "config:best-practices",
-    ":automergeBranch",
-    ":automergeMinor",
-    ":maintainLockFilesWeekly",
-    ":semanticCommits"
-  ]
-}
