@@ -1,3 +1,11 @@
+> [!WARNING]
+>
+> `tsd-lite` is being sunset and is planned to be deprecated. I recommend migrating to [TSTyche](https://github.com/tstyche/tstyche).
+>
+> For details, see the [deprecation notice](https://github.com/mrazauskas/tsd-lite/issues/364).
+
+---
+
 # tsd-lite
 
 > Test your TypeScript types easily.
