@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.8.1] - 2023-11-15
+
+_⚠️ `tsd-lite` is being sunset ⚠️_
+
+_It is recommended to migrate to [TSTyche](https://github.com/tstyche/tstyche). For details, see the [deprecation notice](https://github.com/mrazauskas/tsd-lite/issues/364)._
+
 ## [0.8.0] - 2023-05-21
 
 ### Removed
@@ -107,6 +113,7 @@ _Deprecated: missing build files._
 
 _First release._
 
+[0.8.1]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.8.1
 [0.8.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.8.0
 [0.7.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.7.0
 [0.6.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.6.0
