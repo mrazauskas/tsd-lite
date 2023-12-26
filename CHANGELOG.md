@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.8.2] - 2023-12-26
+
+_⚠️ `tsd-lite` is being sunset ⚠️_
+
+_It is recommended to migrate to [TSTyche](https://github.com/tstyche/tstyche). For details, see the [deprecation notice](https://github.com/mrazauskas/tsd-lite/issues/364)._
+
+### Fixed
+
+- Add `ts2353` to the list of expected errors ([#365](https://github.com/mrazauskas/tsd-lite/pull/365))
+
 ## [0.8.1] - 2023-11-15
 
 _⚠️ `tsd-lite` is being sunset ⚠️_
