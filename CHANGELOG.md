@@ -1,8 +1,14 @@
 # Changelog
 
+## [0.9.0] - 2024-02-24
+
+🛑 _`tsd-lite` is deprecated._ 🛑
+
+_It is recommended to migrate to [TSTyche](https://github.com/tstyche/tstyche). For details, see the [deprecation notice](https://github.com/mrazauskas/tsd-lite/issues/364)._
+
 ## [0.8.2] - 2023-12-26
 
-_⚠️ `tsd-lite` is being sunset ⚠️_
+⚠️ _`tsd-lite` is being sunset._ ⚠️
 
 _It is recommended to migrate to [TSTyche](https://github.com/tstyche/tstyche). For details, see the [deprecation notice](https://github.com/mrazauskas/tsd-lite/issues/364)._
 
@@ -12,7 +18,7 @@ _It is recommended to migrate to [TSTyche](https://github.com/tstyche/tstyche). 
 
 ## [0.8.1] - 2023-11-15
 
-_⚠️ `tsd-lite` is being sunset ⚠️_
+⚠️ _`tsd-lite` is being sunset._ ⚠️
 
 _It is recommended to migrate to [TSTyche](https://github.com/tstyche/tstyche). For details, see the [deprecation notice](https://github.com/mrazauskas/tsd-lite/issues/364)._
 
@@ -123,6 +129,7 @@ _Deprecated: missing build files._
 
 _First release._
 
+[0.9.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.9.0
 [0.8.2]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.8.2
 [0.8.1]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.8.1
 [0.8.0]: https://github.com/mrazauskas/tsd-lite/releases/tag/v0.8.0
