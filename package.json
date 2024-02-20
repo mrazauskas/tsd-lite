@@ -1,6 +1,6 @@
 {
   "name": "tsd-lite",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "description": "Test your TypeScript types easily",
   "keywords": [
     "typescript",
